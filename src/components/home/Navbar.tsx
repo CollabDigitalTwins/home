@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/Button'
 import LanguageToggle from '@/components/ui/LanguageToggle'
 import { CdtIcon } from '@/components/ui/CdtIcon'
 import { Language } from '@/lib/language'
+import { usePlatformLink } from '@/hooks/usePlatformLink'
 
 interface NavbarProps {
   theme: 'light' | 'dark'
@@ -42,6 +43,7 @@ export default function Navbar({
   const tGh = useTranslations('HomePage.githubRelease')
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const handlePlatformClick = usePlatformLink()
 
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href)
@@ -151,7 +153,12 @@ export default function Navbar({
               </Button>
 
               <Button size="sm" className="btn-nav-cta rounded-md px-5 text-sm" asChild>
-                <a href="https://app.collabdt.org/cdt" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://app.collabdt.org/cdt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={handlePlatformClick}
+                >
                   {tHero('platformButton')}
                 </a>
               </Button>

@@ -13,7 +13,8 @@
       "description": "Une plateforme ouverte, dans le navigateur, pour créer, héberger et explorer des jumeaux numériques, déployée à votre manière, personnalisée selon vos besoins et libre de tout verrouillage propriétaire. Économie de recouvrement des coûts. Code source disponible.",
       "secondaryCta": "Explorer la plateforme",
       "docsButton": "Documentations",
-      "sourceCodeButton": "GitHub"
+      "sourceCodeButton": "GitHub",
+      "platformButton": "Plateforme"
     },
     "metadata": {
       "title": "Collab Digital Twins",
@@ -328,5 +329,11 @@
       "privacyPolicy": "Politique de confidentialité",
       "cookiePolicy": "Politique de cookies"
     }
+  },
+  "MaintenancePage": {
+    "title": "En maintenance",
+    "description": "La plateforme CDT est actuellement en maintenance planifiée. Nous serons de retour en ligne sous peu.",
+    "thankYou": "Merci de votre patience.",
+    "contactText": "Besoin d'aide entre-temps ? Contactez-nous à"
   }
 }

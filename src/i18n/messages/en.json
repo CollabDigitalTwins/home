@@ -329,5 +329,11 @@
       "privacyPolicy": "Privacy Policy",
       "cookiePolicy": "Cookie Policy"
     }
+  },
+  "MaintenancePage": {
+    "title": "Under maintenance",
+    "description": "The CDT platform is currently undergoing scheduled maintenance. We'll be back online shortly.",
+    "thankYou": "Thank you for your patience.",
+    "contactText": "Need help in the meantime? Reach us at"
   }
 }

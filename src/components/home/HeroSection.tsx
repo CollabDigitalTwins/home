@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/Button'
 import AnimatedBackground from '@/components/ui/AnimatedBackground'
 import Globe from '@/components/ui/Globe'
+import { usePlatformLink } from '@/hooks/usePlatformLink'
 
 const GH_URL = 'https://github.com/CollabDigitalTwins/core'
 const MAP_STYLE =
@@ -19,6 +20,7 @@ interface HeroSectionProps {
 export default function HeroSection({ assetsUrl }: HeroSectionProps) {
   const tHero = useTranslations('HomePage.hero')
   const tGh = useTranslations('HomePage.githubRelease')
+  const handlePlatformClick = usePlatformLink()
 
   // Below `md` (768px) the two-up layout collapses and the right column is gone,
   // so we drop the globe in as a dimmed full-bleed backdrop instead. Gating on a
@@ -138,7 +140,12 @@ export default function HeroSection({ assetsUrl }: HeroSectionProps) {
                 className="btn-sovereign text-base px-8 w-full sm:w-auto"
                 asChild
               >
-                <a href="https://app.collabdt.org/cdt" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://app.collabdt.org/cdt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={handlePlatformClick}
+                >
                   {tHero('secondaryCta')}
                 </a>
               </Button>
