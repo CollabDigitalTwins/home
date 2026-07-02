@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/navigation'
+import { usePlatformLink } from '@/hooks/usePlatformLink'
 
 const NAV_LINKS = [
   { key: 'navAbout', href: '/about' },
@@ -16,6 +17,7 @@ const DOCS_URL = 'https://docs.collabdt.org/'
 
 export default function Footer() {
   const tFooter = useTranslations('HomePage.footer')
+  const handlePlatformClick = usePlatformLink()
 
   return (
     <footer className="relative" style={{ background: 'var(--hp-lowest)' }}>
@@ -64,6 +66,7 @@ export default function Footer() {
                         style={style}
                         onMouseEnter={onMouseEnter}
                         onMouseLeave={onMouseLeave}
+                        onClick={link.key === 'navPlatform' ? handlePlatformClick : undefined}
                       >
                         {tFooter(link.key)}
                       </a>
