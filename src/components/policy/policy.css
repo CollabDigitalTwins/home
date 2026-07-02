@@ -33,11 +33,27 @@ body:has(.policy-page) {
   z-index: 50;
   background: var(--hp-surface);
   border-bottom: 1px solid var(--hp-outline-variant);
-  padding: 0.9rem 2rem;
+}
+
+/* Mirrors the main navbar's `container mx-auto px-6 py-4` (centered,
+   1.5rem horizontal / 1rem vertical padding) so the logo sits identically.
+   Max-widths track the project's custom Tailwind breakpoints. */
+.policy-nav-inner {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
+@media (min-width: 450px)  { .policy-nav-inner { max-width: 450px; } }
+@media (min-width: 575px)  { .policy-nav-inner { max-width: 575px; } }
+@media (min-width: 768px)  { .policy-nav-inner { max-width: 768px; } }
+@media (min-width: 992px)  { .policy-nav-inner { max-width: 992px; } }
+@media (min-width: 1200px) { .policy-nav-inner { max-width: 1200px; } }
+@media (min-width: 1400px) { .policy-nav-inner { max-width: 1400px; } }
 
 .policy-nav-brand {
   display: inline-flex;
@@ -56,6 +72,15 @@ body:has(.policy-page) {
   text-transform: lowercase;
   color: var(--hp-on-surface);
   transition: color 0.2s ease;
+}
+
+/* Mirror the main navbar's max-xs:text-sm max-xs:text-nowrap (xs = 450px). */
+@media (max-width: 449.98px) {
+  .policy-nav-brand-text {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    white-space: nowrap;
+  }
 }
 
 .policy-nav-brand-accent {
