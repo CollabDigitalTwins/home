@@ -3,6 +3,7 @@ import { SiteChrome } from '@/components/home/SiteChrome'
 import PageHeader from '@/components/home/PageHeader'
 import TeamSection from '@/components/home/TeamSection'
 import RecognitionSection from '@/components/home/RecognitionSection'
+import MediaSection from '@/components/home/MediaSection'
 
 interface Props {
   params: Promise<{ locale: string }>
@@ -23,6 +24,7 @@ export default async function AboutPage({ params }: Props) {
       />
       <TeamSection />
       <RecognitionSection />
+      <MediaSection />
     </SiteChrome>
   )
 }
