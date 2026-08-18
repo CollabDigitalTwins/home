@@ -169,6 +169,20 @@
         "body": "Lauréat à la fois du Prix de la recherche et du Prix de la meilleure innovation, qui souligne l'excellence d'ensemble dans toutes les catégories des Prix Innovation Spotlight 2024."
       }
     },
+    "media": {
+      "sectionLabel": "Médias",
+      "title": "Dans l'actualité.",
+      "subtitle": "Couverture de la plateforme dans les médias nationaux et internationaux, la presse géospatiale et de la construction, et le milieu de la recherche.",
+      "filterLabel": "Filtrer les articles par catégorie",
+      "filterAll": "Tout",
+      "previousPage": "Page précédente des médias",
+      "nextPage": "Page suivante des médias",
+      "categories": {
+        "press": "Presse",
+        "industry": "Industrie",
+        "award": "Prix"
+      }
+    },
     "capabilities": {
       "sectionLabel": "Capacités",
       "title": "Ce que la plateforme permet.",

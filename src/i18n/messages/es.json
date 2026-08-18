@@ -169,6 +169,20 @@
         "body": "Ganador del Premio a la Investigación y del Premio a la Mejor Innovación, que reconoce la excelencia general en todas las categorías de los Premios Innovation Spotlight 2024."
       }
     },
+    "media": {
+      "sectionLabel": "Medios",
+      "title": "En las noticias.",
+      "subtitle": "Cobertura de la plataforma en los medios nacionales e internacionales, la prensa geoespacial y de la construcción, y la comunidad investigadora.",
+      "filterLabel": "Filtrar artículos por categoría",
+      "filterAll": "Todos",
+      "previousPage": "Página anterior de medios",
+      "nextPage": "Siguiente página de medios",
+      "categories": {
+        "press": "Prensa",
+        "industry": "Industria",
+        "award": "Premios"
+      }
+    },
     "capabilities": {
       "sectionLabel": "Capacidades",
       "title": "Lo que la plataforma habilita.",

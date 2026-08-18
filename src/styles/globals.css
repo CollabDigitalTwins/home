@@ -125,4 +125,13 @@
   .hover-card:hover {
     @apply shadow-lg -translate-y-1 border-primary/40;
   }
+
+  .media-track {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .media-track::-webkit-scrollbar {
+    display: none;
+  }
 }

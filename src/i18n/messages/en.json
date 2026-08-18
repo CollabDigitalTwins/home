@@ -169,6 +169,20 @@
         "body": "Winner of both the Research Award and the Best in Innovation Award, recognizing overall excellence across all categories at the 2024 Innovation Spotlight Awards."
       }
     },
+    "media": {
+      "sectionLabel": "Media",
+      "title": "In the news.",
+      "subtitle": "Coverage of the platform in national and international media, the geospatial and construction press, and the research community.",
+      "filterLabel": "Filter articles by category",
+      "filterAll": "All",
+      "previousPage": "Previous media page",
+      "nextPage": "Next media page",
+      "categories": {
+        "press": "Press",
+        "industry": "Industry",
+        "award": "Awards"
+      }
+    },
     "capabilities": {
       "sectionLabel": "Capabilities",
       "title": "What the platform enables.",
