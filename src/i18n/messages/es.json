@@ -44,14 +44,17 @@
       "subtitle": "Consulta nuestras guías, documentación y ejemplos para construir sobre la plataforma CDT.",
       "startLabel": "¿Por dónde te gustaría empezar?",
       "user": {
+        "tab": "01 · Usar",
         "title": "Soy usuario",
         "body": "Guías para usar la plataforma CDT."
       },
       "developer": {
+        "tab": "02 · Construir",
         "title": "Soy desarrollador",
         "body": "API, hooks, componentes y complementos."
       },
       "deployment": {
+        "tab": "03 · Poseer",
         "title": "Despliegue",
         "body": "Autoaloja CDT o usa un despliegue gestionado."
       },
