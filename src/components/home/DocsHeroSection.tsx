@@ -66,7 +66,7 @@ export default function DocsHeroSection() {
           <div className="space-y-5">
             <div className="section-label justify-center">{t('startLabel')}</div>
 
-            <div className="grid sm:grid-cols-3 gap-3 text-left">
+            <div className="grid sm:grid-cols-3 gap-x-3 gap-y-4 text-left">
               {START_CARDS.map(({ key, icon: Icon, href }, idx) => (
                 <motion.a
                   key={key}
@@ -76,15 +76,12 @@ export default function DocsHeroSection() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.15 + 0.07 * idx }}
-                  className="tonal-card group p-5 flex flex-col gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--hp-primary-container)]"
-                  style={{ borderLeft: '2px solid var(--hp-primary-container)' }}
+                  className="tab-card group"
                 >
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center"
-                    style={{ background: 'rgba(239, 145, 97, 0.1)' }}
-                  >
-                    <Icon className="w-5 h-5" style={{ color: 'var(--hp-primary-container)' }} />
-                  </div>
+                  <span className="tab-card-tab">{t(`${key}.tab`)}</span>
+                  <span className="tab-card-glyph" aria-hidden>
+                    <Icon className="w-[22px] h-[22px]" />
+                  </span>
                   <div className="space-y-1">
                     <div className="flex items-center gap-1">
                       <h3

@@ -44,14 +44,17 @@
       "subtitle": "Visit our guides, documentation, and examples to build on the CDT platform.",
       "startLabel": "Where would you like to start?",
       "user": {
+        "tab": "01 · Use",
         "title": "I am a user",
         "body": "Guides for using the CDT platform."
       },
       "developer": {
+        "tab": "02 · Build",
         "title": "I am a developer",
         "body": "APIs, hooks, components, and plugins."
       },
       "deployment": {
+        "tab": "03 · Own",
         "title": "Deployment",
         "body": "Self-host CDT or use a managed deployment."
       },
