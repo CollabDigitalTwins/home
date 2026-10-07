@@ -33,14 +33,7 @@ html:has(.hp) {
   font-family: 'Geist', sans-serif;
 }
 
-.stat-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 1rem;
-  background: rgba(239, 145, 97, 0.1);
-  border: 1px solid rgba(239, 145, 97, 0.25);
-  border-radius: 9999px;
+.hero-tagline {
   font-size: 0.68rem;
   color: var(--hp-primary-container);
   font-weight: 700;
@@ -239,27 +232,11 @@ html:has(.hp) {
   background: rgba(53, 53, 52, 0.7) !important;
 }
 
-.dark .stat-pill {
-  background: rgba(239, 145, 97, 0.08);
-  border-color: rgba(239, 145, 97, 0.18);
-}
-
-/* Mobile: drop the pill chrome (background, border, dot) and keep the tagline on
-   a single tightened line — a cleaner label than the wrapped pill at small
-   widths. Grouped with `.dark` and placed after it so it wins in both themes. */
 @media (max-width: 767px) {
-  .stat-pill,
-  .dark .stat-pill {
-    padding: 0;
-    background: transparent;
-    border-color: transparent;
-    gap: 0;
+  .hero-tagline {
     font-size: 0.62rem;
     letter-spacing: 0.12em;
     white-space: nowrap;
-  }
-  .stat-pill > span {
-    display: none;
   }
 }
 
@@ -288,7 +265,6 @@ html:has(.hp) {
   margin-top: 22px;
   padding: 16px;
   background: var(--tc-surface);
-  border: 1px solid color-mix(in srgb, var(--tc-accent) 25%, var(--hp-outline-variant));
   border-radius: 0 0 6px 6px;
   color: var(--hp-on-surface);
   text-decoration: none;
@@ -318,8 +294,8 @@ html:has(.hp) {
 
 .tab-card-tab {
   position: absolute;
-  left: -1px;
-  right: -1px;
+  left: 0;
+  right: 0;
   top: -22px;
   height: 22px;
   display: flex;
@@ -330,9 +306,7 @@ html:has(.hp) {
   text-transform: uppercase;
   white-space: nowrap;
   color: var(--tc-accent-text);
-  background: color-mix(in srgb, var(--tc-accent) 12%, var(--tc-surface));
-  border: 1px solid color-mix(in srgb, var(--tc-accent) 40%, var(--hp-outline-variant));
-  border-bottom: 0;
+  background: color-mix(in srgb, var(--tc-accent) 7%, var(--tc-surface));
   border-radius: 4px 4px 0 0;
   transition: background 0.2s;
 }
