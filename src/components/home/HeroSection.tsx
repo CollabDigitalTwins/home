@@ -95,13 +95,7 @@ export default function HeroSection({ assetsUrl }: HeroSectionProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="stat-pill">
-                <span
-                  className="w-1.5 h-1.5 rounded-full animate-pulse"
-                  style={{ background: 'var(--hp-primary-container)' }}
-                />
-                {tHero('tagline')}
-              </div>
+              <div className="hero-tagline">{tHero('tagline')}</div>
             </motion.div>
 
             <motion.h1
