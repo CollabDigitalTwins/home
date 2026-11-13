@@ -19,7 +19,7 @@ interface NavbarProps {
   showNavigation?: boolean
 }
 
-type NavKey = 'home' | 'about' | 'services' | 'contact'
+type NavKey = 'home' | 'about' | 'services' | 'plugins' | 'contact'
 
 const DOCS_URL = 'https://docs.collabdt.org/'
 const GH_URL = 'https://github.com/CollabDigitalTwins/core'
@@ -28,6 +28,7 @@ const NAV_ITEMS: { key: NavKey; href: string }[] = [
   { key: 'home', href: '/' },
   { key: 'about', href: '/about' },
   { key: 'services', href: '/services' },
+  { key: 'plugins', href: '/plugins' },
   { key: 'contact', href: '/contact' },
 ]
 

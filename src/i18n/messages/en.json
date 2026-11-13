@@ -5,7 +5,8 @@
       "about": "about us",
       "services": "services",
       "contact": "contact",
-      "goToDocs": "Go to the platform documentation"
+      "goToDocs": "Go to the platform documentation",
+      "plugins": "plugins"
     },
     "hero": {
       "tagline": "Building digital connections, together",
@@ -150,14 +151,7 @@
         "title": "IoT sensors on the map and BIM",
         "body": "Add live IoT sensors directly onto the map and into the BIM model. Stream readings into the digital twin to connect physical infrastructure with its digital counterpart."
       },
-      "wildfires": {
-        "title": "Visualizing wildfires",
-        "body": "An interactive map built with a wildfire research group to monitor fire conditions across Canada, combining open datasets from the Canadian Interagency Forest Fire Centre (CIFFC) with photos and videos crowdsourced from users in near-real time."
-      },
-      "disasterResponse": {
-        "title": "Disaster Response Simulation",
-        "body": "Real-time emergency scenario simulation. Model a developing incident with live wind-driven smoke, moving traffic, evacuation zones, and 3D building context on the map."
-      }
+      "pluginsLink": "Explore the plugin gallery"
     },
     "recognition": {
       "sectionLabel": "Recognition",
@@ -337,6 +331,7 @@
       "navigate": "Navigate",
       "navAbout": "About Us",
       "navServices": "Services",
+      "navPlugins": "Plugins",
       "navContact": "Contact",
       "navPlatform": "Platform",
       "resources": "Resources",
@@ -352,5 +347,71 @@
     "description": "The CDT platform is currently undergoing scheduled maintenance. We'll be back online shortly.",
     "thankYou": "Thank you for your patience.",
     "contactText": "Need help in the meantime? Reach us at"
+  },
+  "PluginsPage": {
+    "eyebrow": "Plugin system",
+    "title": "Plugins: add what your twin needs.",
+    "subtitle": "A plugin adds a tool, a live-data layer or a data page to a running CDT instance without changing CDT core. Each one below is running on the platform today.",
+    "readDocs": "Plugin docs",
+    "gallery": {
+      "label": "Gallery",
+      "title": "Plugins in action",
+      "overviewTitle": "The CDT plugin system",
+      "overviewBody": "How a plugin goes from a folder to a feature: scaffolded with one command, admitted by an organization administrator, then switched on by each user.",
+      "filterAll": "All",
+      "levelName": "Level {n} · {name}",
+      "open": "Open {name}",
+      "close": "Close",
+      "pluginDocs": "Plugin docs",
+      "playOverview": "Play overview",
+      "pauseOverview": "Pause overview",
+      "fullscreen": "Open in fullscreen",
+      "empty": "No plugins at this level yet."
+    },
+    "how": {
+      "label": "How it works",
+      "title": "A stable boundary between core and what you add.",
+      "body": "CDT core stays general and dependable for every organization. Domain-specific work lives in plugins that each organization builds, owns and maintains.",
+      "points": {
+        "core": {
+          "title": "No change to core",
+          "body": "A plugin is a folder with a manifest and React components. CDT calls its activate() function once and renders its contributions next to the core."
+        },
+        "ways": {
+          "title": "Mounted or compiled in",
+          "body": "A self-hosted deployment mounts a built plugin folder and restarts. A plugin useful to every installation goes into core through a pull request."
+        },
+        "enable": {
+          "title": "Two-level opt-in",
+          "body": "An administrator adds a plugin to the organization, then each person chooses whether it runs for them. Nothing appears because an update shipped it."
+        },
+        "standards": {
+          "title": "Open standards",
+          "body": "Plugins read and write IFC, IDS, bSDD, GeoJSON, WMS, SensorThings and BCF, so the data they produce is never tied to CDT."
+        }
+      },
+      "security": "A plugin runs with the same access as CDT itself. Read it before mounting it.",
+      "surfacesTitle": "Where a plugin can appear",
+      "openInDocs": "Open in docs"
+    },
+    "maturity": {
+      "label": "Maturity model",
+      "title": "Each plugin moves a twin up a level.",
+      "body": "The core covers the descriptive baseline. Plugins add use cases at the level they reach, from a permit map to a live transit feed to a grid what-if. This diagram updates as plugins join the gallery."
+    },
+    "build": {
+      "label": "Build your own",
+      "title": "Start from something that already runs.",
+      "body": "create-cdt-plugin generates a working plugin from a few answers, including the manifest, the build configuration and the translations. The docs also cover building a plugin with an AI coding assistant.",
+      "firstPlugin": "First plugin",
+      "withAi": "Build with AI"
+    },
+    "levels": {
+      "1": "Descriptive",
+      "2": "Informative",
+      "3": "Predictive",
+      "4": "Prescriptive",
+      "5": "Autonomous"
+    }
   }
 }

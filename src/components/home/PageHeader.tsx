@@ -1,5 +1,6 @@
 'use client'
 
+import type { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 
 interface PageHeaderProps {
@@ -7,6 +8,7 @@ interface PageHeaderProps {
   title: string
   subtitle?: string
   align?: 'left' | 'center'
+  children?: ReactNode
 }
 
 /**
@@ -22,6 +24,7 @@ export default function PageHeader({
   title,
   subtitle,
   align = 'left',
+  children,
 }: PageHeaderProps) {
   const centered = align === 'center'
   return (
@@ -66,6 +69,7 @@ export default function PageHeader({
               {subtitle}
             </p>
           )}
+          {children}
         </motion.div>
       </div>
     </section>
