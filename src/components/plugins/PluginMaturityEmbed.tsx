@@ -41,6 +41,7 @@ export default function PluginMaturityEmbed({ onSelect }: PluginMaturityEmbedPro
       docsUrl="https://docs.collabdt.org/docs/plugins/overview#plugins-on-the-maturity-model"
       docsLabel={t('how.openInDocs')}
       onMessage={handleMessage}
+      frameless
     />
   )
 }
