@@ -392,8 +392,7 @@
       "openInDocs": "Open in docs"
     },
     "maturity": {
-      "label": "Maturity model",
-      "title": "Where do you want to be on the maturity scale?"
+      "label": "Maturity model"
     },
     "build": {
       "label": "Build your own",

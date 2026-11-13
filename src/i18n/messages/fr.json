@@ -392,8 +392,7 @@
       "openInDocs": "Ouvrir la documentation"
     },
     "maturity": {
-      "label": "Modèle de maturité",
-      "title": "Où voulez-vous vous situer sur l’échelle de maturité ?"
+      "label": "Modèle de maturité"
     },
     "build": {
       "label": "Créer le vôtre",

@@ -392,8 +392,7 @@
       "openInDocs": "Abrir en la documentación"
     },
     "maturity": {
-      "label": "Modelo de madurez",
-      "title": "¿Dónde quiere estar en la escala de madurez?"
+      "label": "Modelo de madurez"
     },
     "build": {
       "label": "Cree el suyo",

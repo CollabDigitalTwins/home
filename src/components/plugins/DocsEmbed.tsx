@@ -65,7 +65,7 @@ export default function DocsEmbed({ id, path, title, docsUrl, docsLabel, onMessa
   return (
     <div className="space-y-3">
       <div
-        className="relative w-full overflow-hidden rounded-xl"
+        className={`relative w-full overflow-hidden ${frameless ? '' : 'rounded-xl'}`}
         style={{
           border: frameless ? undefined : '1px solid var(--hp-outline-variant, rgba(74, 61, 92, 0.18))',
           background: frameless ? 'transparent' : 'var(--hp-surface)',
