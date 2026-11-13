@@ -5,7 +5,8 @@
       "about": "à propos de nous",
       "services": "services",
       "contact": "contact",
-      "goToDocs": "Aller à la documentation de la plateforme"
+      "goToDocs": "Aller à la documentation de la plateforme",
+      "plugins": "plugiciels"
     },
     "hero": {
       "tagline": "Bâtir des connexions numériques, ensemble",
@@ -150,14 +151,7 @@
         "title": "Capteurs IoT sur la carte et BIM",
         "body": "Ajoutez des capteurs IoT en direct directement sur la carte et dans le modèle BIM. Diffusez les lectures vers le jumeau numérique pour relier l'infrastructure physique à son pendant numérique."
       },
-      "wildfires": {
-        "title": "Visualisation des feux de forêt",
-        "body": "Une carte interactive bâtie avec un groupe de recherche sur les feux de forêt pour surveiller les conditions des incendies au Canada, combinant des jeux de données ouverts du Canadian Interagency Forest Fire Centre (CIFFC) avec des photos et vidéos collectées par les utilisateurs en quasi temps réel."
-      },
-      "disasterResponse": {
-        "title": "Simulation de réponse aux catastrophes",
-        "body": "Simulation en temps réel de scénarios d'urgence. Modélise un incident en développement avec de la fumée poussée par le vent, du trafic en mouvement, des zones d'évacuation et un contexte 3D des bâtiments sur la carte."
-      }
+      "pluginsLink": "Explorer la galerie de plugiciels"
     },
     "recognition": {
       "sectionLabel": "Reconnaissance",
@@ -337,6 +331,7 @@
       "navigate": "Naviguer",
       "navAbout": "À propos de nous",
       "navServices": "Services",
+      "navPlugins": "Plugiciels",
       "navContact": "Contact",
       "navPlatform": "Plateforme",
       "resources": "Ressources",
@@ -352,5 +347,71 @@
     "description": "La plateforme CDT est actuellement en maintenance planifiée. Nous serons de retour en ligne sous peu.",
     "thankYou": "Merci de votre patience.",
     "contactText": "Besoin d'aide entre-temps ? Contactez-nous à"
+  },
+  "PluginsPage": {
+    "eyebrow": "Système de plugiciels",
+    "title": "Plugiciels : ajoutez ce dont votre jumeau a besoin.",
+    "subtitle": "Un plugiciel ajoute un outil, une couche de données en direct ou une page de données à une instance CDT en service, sans modifier le cœur de CDT. Chacun de ceux ci-dessous fonctionne déjà sur la plateforme.",
+    "readDocs": "Documentation",
+    "gallery": {
+      "label": "Galerie",
+      "title": "Plugiciels en action",
+      "overviewTitle": "Le système de plugiciels CDT",
+      "overviewBody": "Comment un plugiciel passe d’un dossier à une fonctionnalité : généré par une seule commande, admis par l’administrateur de l’organisation, puis activé par chaque personne.",
+      "filterAll": "Tous",
+      "levelName": "Niveau {n} · {name}",
+      "open": "Ouvrir {name}",
+      "close": "Fermer",
+      "pluginDocs": "Documentation",
+      "playOverview": "Lire la présentation",
+      "pauseOverview": "Mettre en pause",
+      "fullscreen": "Plein écran",
+      "empty": "Aucun plugiciel à ce niveau pour l’instant."
+    },
+    "how": {
+      "label": "Fonctionnement",
+      "title": "Une frontière stable entre le cœur et ce que vous ajoutez.",
+      "body": "Le cœur de CDT reste général et fiable pour toutes les organisations. Le travail propre à un domaine vit dans des plugiciels que chaque organisation conçoit, possède et maintient.",
+      "points": {
+        "core": {
+          "title": "Aucun changement au cœur",
+          "body": "Un plugiciel est un dossier avec un manifeste et des composants React. CDT appelle sa fonction activate() une fois et affiche ses contributions à côté du cœur."
+        },
+        "ways": {
+          "title": "Monté ou intégré",
+          "body": "Un déploiement autohébergé monte le dossier d’un plugiciel compilé puis redémarre. Un plugiciel utile à toutes les installations entre dans le cœur par une demande de fusion."
+        },
+        "enable": {
+          "title": "Activation à deux niveaux",
+          "body": "Un administrateur ajoute le plugiciel à l’organisation, puis chaque personne choisit s’il s’exécute pour elle. Rien n’apparaît du seul fait d’une mise à jour."
+        },
+        "standards": {
+          "title": "Normes ouvertes",
+          "body": "Les plugiciels lisent et écrivent IFC, IDS, bSDD, GeoJSON, WMS, SensorThings et BCF : leurs données ne sont jamais liées à CDT."
+        }
+      },
+      "security": "Un plugiciel s’exécute avec les mêmes accès que CDT. Lisez-le avant de le monter.",
+      "surfacesTitle": "Où un plugiciel peut apparaître",
+      "openInDocs": "Ouvrir la documentation"
+    },
+    "maturity": {
+      "label": "Modèle de maturité",
+      "title": "Chaque plugiciel fait monter le jumeau d’un niveau.",
+      "body": "Le cœur couvre le niveau descriptif. Les plugiciels ajoutent des cas d’usage au niveau qu’ils atteignent, d’une carte des permis à un flux de transport en direct jusqu’à un scénario sur le réseau électrique. Ce diagramme suit les plugiciels de la galerie."
+    },
+    "build": {
+      "label": "Créer le vôtre",
+      "title": "Partez de quelque chose qui fonctionne déjà.",
+      "body": "create-cdt-plugin génère un plugiciel fonctionnel à partir de quelques réponses, y compris le manifeste, la configuration de compilation et les traductions. La documentation couvre aussi la création d’un plugiciel avec un assistant de programmation IA.",
+      "firstPlugin": "Premier plugiciel",
+      "withAi": "Créer avec l’IA"
+    },
+    "levels": {
+      "1": "Descriptif",
+      "2": "Informatif",
+      "3": "Prédictif",
+      "4": "Prescriptif",
+      "5": "Autonome"
+    }
   }
 }

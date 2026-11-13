@@ -2,14 +2,15 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ChevronLeft, ChevronRight, Maximize2, Pause, Play } from 'lucide-react'
+import { ArrowRight, ChevronLeft, ChevronRight, Maximize2, Pause, Play } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 
 interface DemosSectionProps {
     assetsUrl: string
 }
 
-type DemoKey = 'general' | 'viewers' | 'organizational' | 'open-data' | 'openBIM' | 'sensors' | 'wildfires' | 'disasterResponse'
+type DemoKey = 'general' | 'viewers' | 'organizational' | 'open-data' | 'openBIM' | 'sensors'
 
 interface Demo {
     key: DemoKey
@@ -23,8 +24,6 @@ const DEMOS: Demo[] = [
     { key: 'open-data', file: 'cdt-open_data.mp4' },
     { key: 'openBIM', file: 'cdt-openBIM.mp4' },
     { key: 'sensors', file: 'cdt-sensors-demo.mp4' },
-    { key: 'wildfires', file: 'cdt-Wildfires.mp4' },
-    { key: 'disasterResponse', file: 'cdt-iqaluit-warehouse-incident.mp4' },
 ]
 
 export default function DemosSection({ assetsUrl }: DemosSectionProps) {
@@ -416,6 +415,14 @@ export default function DemosSection({ assetsUrl }: DemosSectionProps) {
                                 )
                             })}
                         </div>
+                        <Link
+                            href="/plugins"
+                            className="mt-5 inline-flex items-center gap-1 text-sm font-semibold underline underline-offset-2 transition-opacity hover:opacity-80"
+                            style={{ color: 'var(--hp-primary-container)' }}
+                        >
+                            {t('pluginsLink')}
+                            <ArrowRight className="w-4 h-4" />
+                        </Link>
                     </motion.div>
                 </div>
             </div>

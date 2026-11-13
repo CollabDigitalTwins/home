@@ -5,7 +5,8 @@
       "about": "acerca de nosotros",
       "services": "servicios",
       "contact": "contacto",
-      "goToDocs": "Ir a la documentación de la plataforma"
+      "goToDocs": "Ir a la documentación de la plataforma",
+      "plugins": "plugins"
     },
     "hero": {
       "tagline": "Construyendo conexiones digitales, juntos",
@@ -150,14 +151,7 @@
         "title": "Sensores IoT en el mapa y BIM",
         "body": "Añade sensores IoT en vivo directamente sobre el mapa y dentro del modelo BIM. Transmite lecturas al gemelo digital para conectar la infraestructura física con su contraparte digital."
       },
-      "wildfires": {
-        "title": "Visualización de incendios forestales",
-        "body": "Un mapa interactivo construido con un grupo de investigación sobre incendios forestales para monitorear las condiciones del fuego en Canadá, combinando conjuntos de datos abiertos del Canadian Interagency Forest Fire Centre (CIFFC) con fotos y videos aportados por las personas usuarias casi en tiempo real."
-      },
-      "disasterResponse": {
-        "title": "Simulación de respuesta a desastres",
-        "body": "Simulación en tiempo real de escenarios de emergencia. Modela un incidente en desarrollo con humo arrastrado por el viento, tráfico en movimiento, zonas de evacuación y contexto 3D de edificios en el mapa."
-      }
+      "pluginsLink": "Explorar la galería de plugins"
     },
     "recognition": {
       "sectionLabel": "Reconocimiento",
@@ -337,6 +331,7 @@
       "navigate": "Navegar",
       "navAbout": "Acerca de nosotros",
       "navServices": "Servicios",
+      "navPlugins": "Plugins",
       "navContact": "Contacto",
       "navPlatform": "Plataforma",
       "resources": "Recursos",
@@ -352,5 +347,71 @@
     "description": "La plataforma CDT está actualmente en mantenimiento programado. Estaremos de vuelta en línea en breve.",
     "thankYou": "Gracias por su paciencia.",
     "contactText": "¿Necesita ayuda mientras tanto? Contáctenos en"
+  },
+  "PluginsPage": {
+    "eyebrow": "Sistema de plugins",
+    "title": "Plugins: añada lo que su gemelo necesita.",
+    "subtitle": "Un plugin añade una herramienta, una capa de datos en directo o una página de datos a una instancia de CDT en funcionamiento, sin modificar el núcleo de CDT. Todos los que aparecen abajo ya funcionan en la plataforma.",
+    "readDocs": "Documentación",
+    "gallery": {
+      "label": "Galería",
+      "title": "Plugins en acción",
+      "overviewTitle": "El sistema de plugins de CDT",
+      "overviewBody": "Cómo un plugin pasa de una carpeta a una funcionalidad: generado con un solo comando, admitido por el administrador de la organización y activado por cada persona.",
+      "filterAll": "Todos",
+      "levelName": "Nivel {n} · {name}",
+      "open": "Abrir {name}",
+      "close": "Cerrar",
+      "pluginDocs": "Documentación",
+      "playOverview": "Reproducir presentación",
+      "pauseOverview": "Pausar presentación",
+      "fullscreen": "Pantalla completa",
+      "empty": "Todavía no hay plugins en este nivel."
+    },
+    "how": {
+      "label": "Cómo funciona",
+      "title": "Una frontera estable entre el núcleo y lo que usted añade.",
+      "body": "El núcleo de CDT se mantiene general y fiable para todas las organizaciones. El trabajo específico de cada dominio vive en plugins que cada organización crea, posee y mantiene.",
+      "points": {
+        "core": {
+          "title": "Sin cambios en el núcleo",
+          "body": "Un plugin es una carpeta con un manifiesto y componentes React. CDT llama a su función activate() una vez y muestra sus contribuciones junto al núcleo."
+        },
+        "ways": {
+          "title": "Montado o integrado",
+          "body": "Un despliegue autoalojado monta la carpeta de un plugin compilado y se reinicia. Un plugin útil para todas las instalaciones entra en el núcleo mediante una solicitud de cambios."
+        },
+        "enable": {
+          "title": "Activación en dos niveles",
+          "body": "Un administrador añade el plugin a la organización y luego cada persona elige si se ejecuta para ella. Nada aparece solo porque llegó una actualización."
+        },
+        "standards": {
+          "title": "Estándares abiertos",
+          "body": "Los plugins leen y escriben IFC, IDS, bSDD, GeoJSON, WMS, SensorThings y BCF, así que sus datos nunca quedan atados a CDT."
+        }
+      },
+      "security": "Un plugin se ejecuta con los mismos accesos que CDT. Revíselo antes de montarlo.",
+      "surfacesTitle": "Dónde puede aparecer un plugin",
+      "openInDocs": "Abrir en la documentación"
+    },
+    "maturity": {
+      "label": "Modelo de madurez",
+      "title": "Cada plugin sube el gemelo de nivel.",
+      "body": "El núcleo cubre el nivel descriptivo. Los plugins añaden casos de uso en el nivel que alcanzan, desde un mapa de permisos hasta un flujo de transporte en directo o un escenario de la red eléctrica. Este diagrama se actualiza con los plugins de la galería."
+    },
+    "build": {
+      "label": "Cree el suyo",
+      "title": "Empiece con algo que ya funciona.",
+      "body": "create-cdt-plugin genera un plugin funcional a partir de unas pocas respuestas, incluidos el manifiesto, la configuración de compilación y las traducciones. La documentación también explica cómo crear un plugin con un asistente de programación con IA.",
+      "firstPlugin": "Primer plugin",
+      "withAi": "Crear con IA"
+    },
+    "levels": {
+      "1": "Descriptivo",
+      "2": "Informativo",
+      "3": "Predictivo",
+      "4": "Prescriptivo",
+      "5": "Autónomo"
+    }
   }
 }

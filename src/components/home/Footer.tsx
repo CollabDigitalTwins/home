@@ -7,6 +7,7 @@ import { usePlatformLink } from '@/hooks/usePlatformLink'
 const NAV_LINKS = [
   { key: 'navAbout', href: '/about' },
   { key: 'navServices', href: '/services' },
+  { key: 'navPlugins', href: '/plugins' },
   { key: 'navContact', href: '/contact' },
   { key: 'navPlatform', href: 'https://app.collabdt.org/cdt', external: true },
 ] as const
