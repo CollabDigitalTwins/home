@@ -17,7 +17,7 @@ export default function PluginSystemIntro() {
   const t = useTranslations('PluginsPage.how')
 
   return (
-    <section id="how-it-works" className="py-24 relative" style={{ background: 'var(--hp-low)' }}>
+    <section id="how-it-works" className="py-24 relative" style={{ background: 'var(--hp-surface)' }}>
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <SectionHeading label={t('label')} title={t('title')} body={t('body')} />

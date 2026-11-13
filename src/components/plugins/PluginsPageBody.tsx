@@ -35,9 +35,7 @@ export default function PluginsPageBody({ assetsUrl }: { assetsUrl: string }) {
     <>
       <PluginGallery assetsUrl={assetsUrl} expandedSlug={expandedSlug} onExpand={expand} />
 
-      <PluginSystemIntro />
-
-      <section id="maturity" className="py-24 relative" style={{ background: 'var(--hp-surface)' }}>
+      <section id="maturity" className="py-24 relative" style={{ background: 'var(--hp-low)' }}>
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-6xl mx-auto">
             <SectionHeading label={t('maturity.label')} title={t('maturity.title')} />
@@ -45,6 +43,8 @@ export default function PluginsPageBody({ assetsUrl }: { assetsUrl: string }) {
           </div>
         </div>
       </section>
+
+      <PluginSystemIntro />
 
       <section id="build" className="py-24 relative" style={{ background: 'var(--hp-low)' }}>
         <div className="container mx-auto px-4 sm:px-6">
