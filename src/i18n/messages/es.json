@@ -350,14 +350,12 @@
   },
   "PluginsPage": {
     "eyebrow": "Sistema de plugins",
-    "title": "Plugins: añada lo que su gemelo necesita.",
-    "subtitle": "Un plugin añade una herramienta, una capa de datos en directo o una página de datos a una instancia de CDT en funcionamiento, sin modificar el núcleo de CDT. Todos los que aparecen abajo ya funcionan en la plataforma.",
+    "title": "Su experiencia, sobre CDT.",
+    "subtitle": "Un plugin añade una herramienta, una capa de datos en directo o una página de datos a una instancia de CDT en funcionamiento, sin modificar el núcleo de CDT.",
     "readDocs": "Documentación",
     "gallery": {
       "label": "Galería",
       "title": "Plugins en acción",
-      "overviewTitle": "El sistema de plugins de CDT",
-      "overviewBody": "Cómo un plugin pasa de una carpeta a una funcionalidad: generado con un solo comando, admitido por el administrador de la organización y activado por cada persona.",
       "filterAll": "Todos",
       "levelName": "Nivel {n} · {name}",
       "open": "Abrir {name}",
@@ -370,12 +368,12 @@
     },
     "how": {
       "label": "Cómo funciona",
-      "title": "Una frontera estable entre el núcleo y lo que usted añade.",
+      "title": "Añada sus propias funcionalidades sin modificar el núcleo de CDT.",
       "body": "El núcleo de CDT se mantiene general y fiable para todas las organizaciones. El trabajo específico de cada dominio vive en plugins que cada organización crea, posee y mantiene.",
       "points": {
         "core": {
           "title": "Sin cambios en el núcleo",
-          "body": "Un plugin es una carpeta con un manifiesto y componentes React. CDT llama a su función activate() una vez y muestra sus contribuciones junto al núcleo."
+          "body": "Un plugin es una carpeta con un manifiesto y componentes React. CDT lo carga y muestra sus contribuciones junto al núcleo."
         },
         "ways": {
           "title": "Montado o integrado",
@@ -390,14 +388,12 @@
           "body": "Los plugins leen y escriben IFC, IDS, bSDD, GeoJSON, WMS, SensorThings y BCF, así que sus datos nunca quedan atados a CDT."
         }
       },
-      "security": "Un plugin se ejecuta con los mismos accesos que CDT. Revíselo antes de montarlo.",
-      "surfacesTitle": "Dónde puede aparecer un plugin",
+      "surfacesTitle": "Qué aporta un plugin y dónde aparece en CDT",
       "openInDocs": "Abrir en la documentación"
     },
     "maturity": {
       "label": "Modelo de madurez",
-      "title": "Cada plugin sube el gemelo de nivel.",
-      "body": "El núcleo cubre el nivel descriptivo. Los plugins añaden casos de uso en el nivel que alcanzan, desde un mapa de permisos hasta un flujo de transporte en directo o un escenario de la red eléctrica. Este diagrama se actualiza con los plugins de la galería."
+      "title": "¿Dónde quiere estar en la escala de madurez?"
     },
     "build": {
       "label": "Cree el suyo",

@@ -350,14 +350,12 @@
   },
   "PluginsPage": {
     "eyebrow": "Système de plugiciels",
-    "title": "Plugiciels : ajoutez ce dont votre jumeau a besoin.",
-    "subtitle": "Un plugiciel ajoute un outil, une couche de données en direct ou une page de données à une instance CDT en service, sans modifier le cœur de CDT. Chacun de ceux ci-dessous fonctionne déjà sur la plateforme.",
+    "title": "Votre expertise, par-dessus CDT.",
+    "subtitle": "Un plugiciel ajoute un outil, une couche de données en direct ou une page de données à une instance CDT en service, sans modifier le cœur de CDT.",
     "readDocs": "Documentation",
     "gallery": {
       "label": "Galerie",
       "title": "Plugiciels en action",
-      "overviewTitle": "Le système de plugiciels CDT",
-      "overviewBody": "Comment un plugiciel passe d’un dossier à une fonctionnalité : généré par une seule commande, admis par l’administrateur de l’organisation, puis activé par chaque personne.",
       "filterAll": "Tous",
       "levelName": "Niveau {n} · {name}",
       "open": "Ouvrir {name}",
@@ -370,12 +368,12 @@
     },
     "how": {
       "label": "Fonctionnement",
-      "title": "Une frontière stable entre le cœur et ce que vous ajoutez.",
+      "title": "Ajoutez vos propres fonctionnalités sans modifier le cœur de CDT.",
       "body": "Le cœur de CDT reste général et fiable pour toutes les organisations. Le travail propre à un domaine vit dans des plugiciels que chaque organisation conçoit, possède et maintient.",
       "points": {
         "core": {
           "title": "Aucun changement au cœur",
-          "body": "Un plugiciel est un dossier avec un manifeste et des composants React. CDT appelle sa fonction activate() une fois et affiche ses contributions à côté du cœur."
+          "body": "Un plugiciel est un dossier avec un manifeste et des composants React. CDT le charge et affiche ses contributions à côté du cœur."
         },
         "ways": {
           "title": "Monté ou intégré",
@@ -390,14 +388,12 @@
           "body": "Les plugiciels lisent et écrivent IFC, IDS, bSDD, GeoJSON, WMS, SensorThings et BCF : leurs données ne sont jamais liées à CDT."
         }
       },
-      "security": "Un plugiciel s’exécute avec les mêmes accès que CDT. Lisez-le avant de le monter.",
-      "surfacesTitle": "Où un plugiciel peut apparaître",
+      "surfacesTitle": "Ce qu’apporte un plugiciel, et où il apparaît dans CDT",
       "openInDocs": "Ouvrir la documentation"
     },
     "maturity": {
       "label": "Modèle de maturité",
-      "title": "Chaque plugiciel fait monter le jumeau d’un niveau.",
-      "body": "Le cœur couvre le niveau descriptif. Les plugiciels ajoutent des cas d’usage au niveau qu’ils atteignent, d’une carte des permis à un flux de transport en direct jusqu’à un scénario sur le réseau électrique. Ce diagramme suit les plugiciels de la galerie."
+      "title": "Où voulez-vous vous situer sur l’échelle de maturité ?"
     },
     "build": {
       "label": "Créer le vôtre",

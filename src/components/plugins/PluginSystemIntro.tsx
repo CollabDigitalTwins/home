@@ -1,6 +1,6 @@
 'use client'
 
-import { Blocks, FolderInput, ShieldCheck, ToggleRight, Waypoints } from 'lucide-react'
+import { Blocks, DoorOpen, FolderInput, ToggleRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import DocsEmbed from './DocsEmbed'
 import SectionHeading from './SectionHeading'
@@ -10,7 +10,7 @@ const POINTS = [
   { key: 'core', Icon: Blocks },
   { key: 'ways', Icon: FolderInput },
   { key: 'enable', Icon: ToggleRight },
-  { key: 'standards', Icon: Waypoints },
+  { key: 'standards', Icon: DoorOpen },
 ] as const
 
 export default function PluginSystemIntro() {
@@ -36,24 +36,17 @@ export default function PluginSystemIntro() {
             ))}
           </div>
 
-          <p className="mt-5 flex items-start gap-2 text-[0.92rem]" style={{ color: 'var(--hp-on-surface-variant)' }}>
-            <ShieldCheck className="w-4 h-4 mt-0.5 shrink-0" />
-            {t('security')}
-          </p>
-
-          <h3
-            className="mt-16 mb-5 font-display font-bold text-[1.25rem]"
-            style={{ color: 'var(--hp-on-surface)', letterSpacing: '-0.01em' }}
-          >
-            {t('surfacesTitle')}
-          </h3>
-          <DocsEmbed
-            id="plugin-surfaces"
-            path="/embed/plugin-surfaces/"
-            title={t('surfacesTitle')}
-            docsUrl={PLUGINS_DOCS_URL}
-            docsLabel={t('openInDocs')}
-          />
+          <div className="mt-16">
+            <h3 className="section-label mb-5">{t('surfacesTitle')}</h3>
+            <DocsEmbed
+              id="plugin-surfaces"
+              path="/embed/plugin-surfaces/"
+              title={t('surfacesTitle')}
+              docsUrl={PLUGINS_DOCS_URL}
+              docsLabel={t('openInDocs')}
+              frameless
+            />
+          </div>
         </div>
       </div>
     </section>
