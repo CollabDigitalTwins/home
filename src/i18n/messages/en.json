@@ -350,14 +350,12 @@
   },
   "PluginsPage": {
     "eyebrow": "Plugin system",
-    "title": "Plugins: add what your twin needs.",
-    "subtitle": "A plugin adds a tool, a live-data layer or a data page to a running CDT instance without changing CDT core. Each one below is running on the platform today.",
+    "title": "Your expertise on top of CDT.",
+    "subtitle": "A plugin adds a tool, a live-data layer or a data page to a running CDT instance without changing CDT core.",
     "readDocs": "Plugin docs",
     "gallery": {
       "label": "Gallery",
       "title": "Plugins in action",
-      "overviewTitle": "The CDT plugin system",
-      "overviewBody": "How a plugin goes from a folder to a feature: scaffolded with one command, admitted by an organization administrator, then switched on by each user.",
       "filterAll": "All",
       "levelName": "Level {n} · {name}",
       "open": "Open {name}",
@@ -370,12 +368,12 @@
     },
     "how": {
       "label": "How it works",
-      "title": "A stable boundary between core and what you add.",
+      "title": "Add your own features without changing CDT core.",
       "body": "CDT core stays general and dependable for every organization. Domain-specific work lives in plugins that each organization builds, owns and maintains.",
       "points": {
         "core": {
           "title": "No change to core",
-          "body": "A plugin is a folder with a manifest and React components. CDT calls its activate() function once and renders its contributions next to the core."
+          "body": "A plugin is a folder with a manifest and React components. CDT loads it and renders its contributions next to the core."
         },
         "ways": {
           "title": "Mounted or compiled in",
@@ -390,14 +388,12 @@
           "body": "Plugins read and write IFC, IDS, bSDD, GeoJSON, WMS, SensorThings and BCF, so the data they produce is never tied to CDT."
         }
       },
-      "security": "A plugin runs with the same access as CDT itself. Read it before mounting it.",
-      "surfacesTitle": "Where a plugin can appear",
+      "surfacesTitle": "What a plugin brings, and where it shows up in CDT",
       "openInDocs": "Open in docs"
     },
     "maturity": {
       "label": "Maturity model",
-      "title": "Each plugin moves a twin up a level.",
-      "body": "The core covers the descriptive baseline. Plugins add use cases at the level they reach, from a permit map to a live transit feed to a grid what-if. This diagram updates as plugins join the gallery."
+      "title": "Where do you want to be on the maturity scale?"
     },
     "build": {
       "label": "Build your own",

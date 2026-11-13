@@ -19,6 +19,7 @@ interface DocsEmbedProps {
   docsUrl: string
   docsLabel: string
   onMessage?: (data: EmbedMessage, frame: HTMLIFrameElement) => void
+  frameless?: boolean
 }
 
 function useSiteTheme(): 'light' | 'dark' {
@@ -34,7 +35,7 @@ function useSiteTheme(): 'light' | 'dark' {
 }
 
 /** Iframes a chrome-less docs.collabdt.org/embed page that reports its own height. */
-export default function DocsEmbed({ id, path, title, docsUrl, docsLabel, onMessage }: DocsEmbedProps) {
+export default function DocsEmbed({ id, path, title, docsUrl, docsLabel, onMessage, frameless }: DocsEmbedProps) {
   const theme = useSiteTheme()
   const frameRef = useRef<HTMLIFrameElement>(null)
   const [height, setHeight] = useState<number | null>(null)
@@ -66,8 +67,8 @@ export default function DocsEmbed({ id, path, title, docsUrl, docsLabel, onMessa
       <div
         className="relative w-full overflow-hidden rounded-xl"
         style={{
-          border: '1px solid var(--hp-outline-variant, rgba(74, 61, 92, 0.18))',
-          background: 'var(--hp-surface)',
+          border: frameless ? undefined : '1px solid var(--hp-outline-variant, rgba(74, 61, 92, 0.18))',
+          background: frameless ? 'transparent' : 'var(--hp-surface)',
           aspectRatio: height ? undefined : '16 / 9',
           height: height ?? undefined,
         }}

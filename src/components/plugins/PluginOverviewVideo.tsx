@@ -38,53 +38,40 @@ export default function PluginOverviewVideo({ assetsUrl }: { assetsUrl: string }
   }
 
   return (
-    <div className="grid lg:grid-cols-[1.6fr_1fr] gap-6 lg:gap-10 items-center">
-      <div className="video-glow w-full">
-        <div className="relative rounded-2xl overflow-hidden aspect-video shadow-lg bg-black">
-          <video
-            ref={videoRef}
-            className="absolute inset-0 w-full h-full object-cover fullscreen-contain"
-            autoPlay
-            muted
-            loop
-            playsInline
-            onPlay={() => setIsPlaying(true)}
-            onPause={() => setIsPlaying(false)}
-          >
-            <source src={pluginVideoUrl(assetsUrl, PLUGIN_SYSTEM_VIDEO)} type="video/mp4" />
-          </video>
-          <div className="absolute bottom-3 right-3 z-10 flex gap-2">
-            <button
-              type="button"
-              onClick={togglePlay}
-              aria-label={isPlaying ? t('pauseOverview') : t('playOverview')}
-              className="w-10 h-10 rounded-full flex items-center justify-center transition-transform hover:scale-105"
-              style={CONTROL_STYLE}
-            >
-              {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 translate-x-[1px]" />}
-            </button>
-            <button
-              type="button"
-              onClick={enterFullscreen}
-              aria-label={t('fullscreen')}
-              className="w-10 h-10 rounded-full flex items-center justify-center transition-transform hover:scale-105"
-              style={CONTROL_STYLE}
-            >
-              <Maximize2 className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className="space-y-3">
-        <h2
-          className="font-display font-bold"
-          style={{ fontSize: 'clamp(1.35rem, 2.4vw, 1.75rem)', lineHeight: '1.15', letterSpacing: '-0.02em', color: 'var(--hp-on-surface)' }}
+    <div className="video-glow w-full">
+      <div className="relative rounded-2xl overflow-hidden aspect-video shadow-lg bg-black">
+        <video
+          ref={videoRef}
+          className="absolute inset-0 w-full h-full object-cover fullscreen-contain"
+          autoPlay
+          muted
+          loop
+          playsInline
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
         >
-          {t('overviewTitle')}
-        </h2>
-        <p className="text-[0.97rem] leading-relaxed" style={{ color: 'var(--hp-on-surface-variant)' }}>
-          {t('overviewBody')}
-        </p>
+          <source src={pluginVideoUrl(assetsUrl, PLUGIN_SYSTEM_VIDEO)} type="video/mp4" />
+        </video>
+        <div className="absolute bottom-3 right-3 z-10 flex gap-2">
+          <button
+            type="button"
+            onClick={togglePlay}
+            aria-label={isPlaying ? t('pauseOverview') : t('playOverview')}
+            className="w-10 h-10 rounded-full flex items-center justify-center transition-transform hover:scale-105"
+            style={CONTROL_STYLE}
+          >
+            {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 translate-x-[1px]" />}
+          </button>
+          <button
+            type="button"
+            onClick={enterFullscreen}
+            aria-label={t('fullscreen')}
+            className="w-10 h-10 rounded-full flex items-center justify-center transition-transform hover:scale-105"
+            style={CONTROL_STYLE}
+          >
+            <Maximize2 className="w-4 h-4" />
+          </button>
+        </div>
       </div>
     </div>
   )
