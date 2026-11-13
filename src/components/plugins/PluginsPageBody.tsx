@@ -38,7 +38,6 @@ export default function PluginsPageBody({ assetsUrl }: { assetsUrl: string }) {
       <section id="maturity" className="py-24 relative" style={{ background: 'var(--hp-low)' }}>
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-6xl mx-auto">
-            <SectionHeading label={t('maturity.label')} title={t('maturity.title')} />
             <PluginMaturityEmbed onSelect={expand} />
           </div>
         </div>
