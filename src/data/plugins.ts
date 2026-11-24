@@ -21,6 +21,8 @@ export const MATURITY_LEVELS: MaturityLevel[] = [1, 2, 3, 4, 5]
 
 export const PLUGINS_DOCS_URL = 'https://docs.collabdt.org/docs/plugins/overview'
 
+export const COMMUNITY_PLUGINS_URL = 'https://github.com/CollabDigitalTwins/plugins'
+
 export const PLUGIN_SYSTEM_VIDEO = 'cdt-plugin-system.mp4'
 
 export const PLUGINS: PluginEntry[] = [

@@ -7,7 +7,7 @@ import PluginGallery from './PluginGallery'
 import PluginMaturityEmbed from './PluginMaturityEmbed'
 import PluginSystemIntro from './PluginSystemIntro'
 import SectionHeading from './SectionHeading'
-import { PLUGINS, PLUGINS_DOCS_URL } from '@/data/plugins'
+import { COMMUNITY_PLUGINS_URL, PLUGINS, PLUGINS_DOCS_URL } from '@/data/plugins'
 
 const DOCS_BASE = 'https://docs.collabdt.org/docs/plugins'
 
@@ -60,6 +60,7 @@ export default function PluginsPageBody({ assetsUrl }: { assetsUrl: string }) {
                 {t('build.firstPlugin')}
               </DocsButton>
               <DocsButton href={`${DOCS_BASE}/building-a-plugin-with-ai`}>{t('build.withAi')}</DocsButton>
+              <DocsButton href={COMMUNITY_PLUGINS_URL}>{t('build.community')}</DocsButton>
               <DocsButton href={PLUGINS_DOCS_URL}>{t('readDocs')}</DocsButton>
             </div>
           </div>
