@@ -399,7 +399,8 @@
       "title": "Partez de quelque chose qui fonctionne déjà.",
       "body": "create-cdt-plugin génère un plugiciel fonctionnel à partir de quelques réponses, y compris le manifeste, la configuration de compilation et les traductions. La documentation couvre aussi la création d’un plugiciel avec un assistant de programmation IA.",
       "firstPlugin": "Premier plugiciel",
-      "withAi": "Créer avec l’IA"
+      "withAi": "Créer avec l’IA",
+      "community": "Plugiciels de la communauté"
     },
     "levels": {
       "1": "Descriptif",

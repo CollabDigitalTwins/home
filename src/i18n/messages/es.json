@@ -399,7 +399,8 @@
       "title": "Empiece con algo que ya funciona.",
       "body": "create-cdt-plugin genera un plugin funcional a partir de unas pocas respuestas, incluidos el manifiesto, la configuración de compilación y las traducciones. La documentación también explica cómo crear un plugin con un asistente de programación con IA.",
       "firstPlugin": "Primer plugin",
-      "withAi": "Crear con IA"
+      "withAi": "Crear con IA",
+      "community": "Plugins de la comunidad"
     },
     "levels": {
       "1": "Descriptivo",

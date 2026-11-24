@@ -399,7 +399,8 @@
       "title": "Start from something that already runs.",
       "body": "create-cdt-plugin generates a working plugin from a few answers, including the manifest, the build configuration and the translations. The docs also cover building a plugin with an AI coding assistant.",
       "firstPlugin": "First plugin",
-      "withAi": "Build with AI"
+      "withAi": "Build with AI",
+      "community": "Community plugins"
     },
     "levels": {
       "1": "Descriptive",
