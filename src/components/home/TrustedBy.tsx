@@ -1,9 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-
-import { useMarquee } from '@/hooks/useMarquee'
 
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 
@@ -12,6 +9,7 @@ interface Partner {
   name: string
   /** Render as an inline SVG so its text shapes can follow the theme. */
   inline?: boolean
+  url: string
 }
 
 /**
@@ -55,86 +53,86 @@ function ReconstructLogo({ className }: { className?: string }) {
 }
 
 const PARTNERS: Partner[] = [
-  { file: 'dnd-logo.png', name: 'Department of National Defence (DND)' },
-  { file: 'NRC-logo.png', name: 'National Research Council (NRC)' },
-  { file: 'carleton-logo.png', name: 'Carleton University' },
-  { file: 'envirocentre-logo.png', name: 'EnviroCentre' },
-  { file: 'reconstruct-logo.svg', name: 'ReConstruct', inline: true },
-  { file: 'recover-logo.png', name: 'Recover' },
-  { file: 'safeandaffordable-logo.png', name: 'A Safe and Affordable Place Called Home' },
-  { file: 'bsc-logo.png', name: 'buildingSMART Canada' },
+  {
+    file: 'dnd-logo.png',
+    name: 'Department of National Defence (DND)',
+    url: 'https://www.canada.ca/en/department-national-defence.html',
+  },
+  { file: 'NRC-logo.png', name: 'National Research Council (NRC)', url: 'https://nrc.canada.ca/en' },
+  { file: 'carleton-logo.png', name: 'Carleton University', url: 'https://carleton.ca/' },
+  { file: 'envirocentre-logo.png', name: 'EnviroCentre', url: 'https://www.envirocentre.ca/' },
+  {
+    file: 'reconstruct-logo.svg',
+    name: 'ReConstruct',
+    inline: true,
+    url: 'https://aeechair.research.mcgill.ca/en/initiatives/the-reconstruct-initiative-2',
+  },
+  { file: 'recover-logo.png', name: 'Recover', url: 'https://recoverinitiative.ca/' },
+  {
+    file: 'safeandaffordable-logo.png',
+    name: 'A Safe and Affordable Place Called Home',
+    url: 'https://safeandaffordable.ca/',
+  },
+  { file: 'bsc-logo.png', name: 'buildingSMART Canada', url: 'https://www.buildingsmartcanada.ca/' },
 ]
 
-function LogoItem({ partner }: { partner: Partner }) {
+const LOGO_CLASS =
+  'h-8 md:h-9 w-auto object-contain saturate-[0.3] opacity-80 transition-all duration-300 group-hover:saturate-100 group-hover:opacity-100 group-focus-visible:saturate-100 group-focus-visible:opacity-100'
+
+const ITEM_CLASS =
+  'group relative flex items-center rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--hp-primary-container)]'
+
+function LogoContent({ partner }: { partner: Partner }) {
   return (
-    <div className="group flex-shrink-0 flex flex-col items-center gap-3 px-3 md:px-6 min-w-[150px] md:min-w-[224px]">
-      <div className="flex items-center justify-center h-24 w-32 md:w-48 px-2 md:px-6 transition-all duration-300 group-hover:scale-105">
-        {partner.inline ? (
-          <ReconstructLogo className="max-h-16 w-auto object-contain saturate-50 opacity-90 transition-all duration-300 group-hover:saturate-100 group-hover:opacity-100" />
-        ) : (
-          <img
-            src={`${BASE}/images/homepage/partners/${partner.file}`}
-            alt={partner.name}
-            className="max-h-16 w-auto object-contain saturate-50 opacity-90 transition-all duration-300 group-hover:saturate-100 group-hover:opacity-100"
-            loading="lazy"
-          />
-        )}
-      </div>
+    <>
+      {partner.inline ? (
+        <ReconstructLogo className={LOGO_CLASS} />
+      ) : (
+        <img
+          src={`${BASE}/images/homepage/partners/${partner.file}`}
+          alt={partner.name}
+          className={LOGO_CLASS}
+          loading="lazy"
+        />
+      )}
       <span
-        className="text-xs font-medium text-center leading-tight max-w-[190px] opacity-0 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0"
-        style={{ color: 'var(--hp-on-surface-variant)' }}
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-full z-20 mt-2 w-max max-w-[14rem] -translate-x-1/2 translate-y-1 text-center text-xs font-medium leading-snug opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100"
+        style={{ color: 'var(--hp-on-surface)' }}
       >
         {partner.name}
       </span>
-    </div>
+    </>
   )
 }
 
-export default function TrustedBySection() {
+function LogoItem({ partner }: { partner: Partner }) {
+  return (
+    <li>
+      <a
+        href={partner.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${ITEM_CLASS} cursor-pointer`}
+        aria-label={partner.name}
+      >
+        <LogoContent partner={partner} />
+      </a>
+    </li>
+  )
+}
+
+export default function TrustedBy() {
   const t = useTranslations('HomePage.trustedBy')
-  const trackRef = useMarquee({ baseSpeed: 50, direction: 'left' })
-  const repeated = [...PARTNERS, ...PARTNERS, ...PARTNERS]
 
   return (
-    <section
-      className="py-16 md:py-20 relative overflow-hidden"
-      style={{
-        background: 'var(--hp-lowest)',
-        borderTop: '1px solid rgba(255,255,255,0.04)',
-        borderBottom: '1px solid rgba(255,255,255,0.04)',
-      }}
-    >
-      <div className="container mx-auto px-6 mb-10">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5 }}
-          className="text-center"
-        >
-          <div className="section-label justify-center">{t('heading')}</div>
-        </motion.div>
-      </div>
-
-      <div className="relative">
-        <div
-          className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(90deg, var(--hp-lowest) 0%, transparent 100%)' }}
-        />
-        <div
-          className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(270deg, var(--hp-lowest) 0%, transparent 100%)' }}
-        />
-        <div
-          ref={trackRef}
-          className="flex select-none"
-          style={{ width: 'max-content', cursor: 'grab', touchAction: 'pan-y' }}
-        >
-          {repeated.map((partner, i) => (
-            <LogoItem key={`${partner.file}-${i}`} partner={partner} />
-          ))}
-        </div>
-      </div>
-    </section>
+    <div className="space-y-4">
+      <div className="hero-tagline">{t('heading')}</div>
+      <ul className="flex flex-wrap items-center justify-between gap-x-4 gap-y-4" aria-label={t('heading')}>
+        {PARTNERS.map((partner) => (
+          <LogoItem key={partner.file} partner={partner} />
+        ))}
+      </ul>
+    </div>
   )
 }

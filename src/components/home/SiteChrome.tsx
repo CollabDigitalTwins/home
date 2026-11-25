@@ -48,7 +48,7 @@ export function SiteChrome({ children }: SiteChromeProps) {
   }
 
   return (
-    <div className="hp min-h-screen bg-background text-foreground">
+    <div className="hp min-h-screen text-foreground" style={{ background: 'var(--hp-surface)' }}>
       <Toaster richColors />
       <Navbar
         theme={theme}

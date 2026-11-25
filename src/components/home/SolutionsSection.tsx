@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Check, Cloud, Server, Hammer, GraduationCap, type LucideIcon } from 'lucide-react'
+import { ArrowRight, Check } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/Button'
 import { Link } from '@/i18n/navigation'
@@ -10,16 +10,15 @@ type SolutionKey = 'managedCloud' | 'selfManaged' | 'customDev' | 'training'
 
 interface Solution {
   key: SolutionKey
-  icon: LucideIcon
   href: string
   external: boolean
 }
 
 const SOLUTIONS: Record<SolutionKey, Solution> = {
-  managedCloud: { key: 'managedCloud', icon: Cloud, href: '/contact', external: false },
-  selfManaged: { key: 'selfManaged', icon: Server, href: 'https://docs.collabdt.org/', external: true },
-  customDev: { key: 'customDev', icon: Hammer, href: '/contact', external: false },
-  training: { key: 'training', icon: GraduationCap, href: '/contact', external: false },
+  managedCloud: { key: 'managedCloud', href: '/contact', external: false },
+  selfManaged: { key: 'selfManaged', href: 'https://docs.collabdt.org/', external: true },
+  customDev: { key: 'customDev', href: '/contact', external: false },
+  training: { key: 'training', href: '/contact', external: false },
 }
 
 interface Group {
@@ -34,7 +33,6 @@ const GROUPS: Group[] = [
 
 function SolutionCard({ sol, idx }: { sol: Solution; idx: number }) {
   const t = useTranslations('HomePage.solutions')
-  const Icon = sol.icon
   const linkClass = 'inline-flex items-center gap-1 font-medium'
   const linkStyle = { color: 'var(--hp-primary-container)' }
 
@@ -46,13 +44,7 @@ function SolutionCard({ sol, idx }: { sol: Solution; idx: number }) {
       transition={{ duration: 0.5, delay: 0.08 * idx }}
       className="tonal-card p-7 flex flex-col"
     >
-      <div className="flex items-center justify-between mb-5">
-        <div
-          className="w-11 h-11 rounded-lg flex items-center justify-center"
-          style={{ background: 'rgba(239, 145, 97, 0.1)' }}
-        >
-          <Icon className="w-5 h-5" style={{ color: 'var(--hp-primary-container)' }} />
-        </div>
+      <div className="mb-4">
         <span
           className="text-[0.65rem] font-bold uppercase tracking-[0.2em]"
           style={{ color: 'var(--hp-on-surface-variant)' }}
@@ -108,7 +100,7 @@ export default function SolutionsSection() {
   const t = useTranslations('HomePage.solutions')
 
   return (
-    <section id="solutions" className="pb-20 md:pb-24 pt-4 relative" style={{ background: 'var(--hp-low)' }}>
+    <section id="solutions" className="pb-20 md:pb-24 pt-4 relative">
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto space-y-16">
           {GROUPS.map((group) => (
