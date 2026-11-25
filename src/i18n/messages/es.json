@@ -357,6 +357,7 @@
       "label": "Galería",
       "title": "Plugins en acción",
       "categories": "Categorías de plugins",
+      "filterAll": "Todos",
       "open": "Abrir {name}",
       "close": "Cerrar",
       "pluginDocs": "Documentación",

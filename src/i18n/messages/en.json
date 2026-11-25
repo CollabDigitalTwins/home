@@ -357,6 +357,7 @@
       "label": "Gallery",
       "title": "Plugins in action",
       "categories": "Plugin categories",
+      "filterAll": "All",
       "open": "Open {name}",
       "close": "Close",
       "pluginDocs": "Plugin docs",
