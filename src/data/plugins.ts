@@ -1,6 +1,8 @@
 import type { Language } from '@/lib/language'
 
-export type MaturityLevel = 1 | 2 | 3 | 4 | 5
+export const PLUGIN_CATEGORIES = ['live-data', 'planning', 'facility-management', 'utilities'] as const
+
+export type PluginCategory = (typeof PLUGIN_CATEGORIES)[number]
 
 export type Localized = Record<Language, string>
 
@@ -14,10 +16,8 @@ export interface PluginEntry {
   video: string
   /** Second of the video used as the gallery thumbnail. */
   thumbnailTime: number
-  level: MaturityLevel
+  category: PluginCategory
 }
-
-export const MATURITY_LEVELS: MaturityLevel[] = [1, 2, 3, 4, 5]
 
 export const PLUGINS_DOCS_URL = 'https://docs.collabdt.org/docs/plugins/overview'
 
@@ -37,7 +37,7 @@ export const PLUGINS: PluginEntry[] = [
     },
     video: 'cdt-ps-building-permits.mp4',
     thumbnailTime: 2,
-    level: 1,
+    category: 'planning',
   },
   {
     slug: 'airplanes',
@@ -50,7 +50,7 @@ export const PLUGINS: PluginEntry[] = [
     },
     video: 'cdt-ps-airplanes.mp4',
     thumbnailTime: 2,
-    level: 2,
+    category: 'live-data',
   },
   {
     slug: 'oc-transpo',
@@ -63,7 +63,7 @@ export const PLUGINS: PluginEntry[] = [
     },
     video: 'cdt-ps-oc-transpo.mp4',
     thumbnailTime: 2,
-    level: 2,
+    category: 'live-data',
   },
   {
     slug: 'space-planner',
@@ -76,7 +76,7 @@ export const PLUGINS: PluginEntry[] = [
     },
     video: 'cdt-ps-space planning.mp4',
     thumbnailTime: 2,
-    level: 2,
+    category: 'facility-management',
   },
   {
     slug: 'wildfires',
@@ -89,7 +89,7 @@ export const PLUGINS: PluginEntry[] = [
     },
     video: 'cdt-ps-willdfires.mp4',
     thumbnailTime: 2,
-    level: 2,
+    category: 'live-data',
   },
   {
     slug: 'flooding',
@@ -102,7 +102,7 @@ export const PLUGINS: PluginEntry[] = [
     },
     video: 'cdt-ps-flooding.mp4',
     thumbnailTime: 2,
-    level: 3,
+    category: 'planning',
   },
   {
     slug: 'electric-grid',
@@ -115,7 +115,7 @@ export const PLUGINS: PluginEntry[] = [
     },
     video: 'cdt-ps-electric grid.mp4',
     thumbnailTime: 2,
-    level: 4,
+    category: 'planning',
   },
   {
     slug: 'tabletop',
@@ -128,12 +128,16 @@ export const PLUGINS: PluginEntry[] = [
     },
     video: 'cdt-ps-tabletop.mp4',
     thumbnailTime: 2,
-    level: 4,
+    category: 'planning',
   },
 ]
 
+const categoryOrder = (p: PluginEntry) => PLUGIN_CATEGORIES.indexOf(p.category)
+
 export const sortedPlugins = (locale: Language): PluginEntry[] =>
-  [...PLUGINS].sort((a, b) => a.level - b.level || a.name[locale].localeCompare(b.name[locale], locale.toLowerCase()))
+  [...PLUGINS].sort(
+    (a, b) => categoryOrder(a) - categoryOrder(b) || a.name[locale].localeCompare(b.name[locale], locale.toLowerCase()),
+  )
 
 export const pluginVideoUrl = (assetsUrl: string, file: string): string =>
   `${assetsUrl}/cdt-homepage/plugins/${encodeURIComponent(file)}`

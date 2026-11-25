@@ -356,15 +356,13 @@
     "gallery": {
       "label": "Gallery",
       "title": "Plugins in action",
-      "filterAll": "All",
-      "levelName": "Level {n} · {name}",
+      "categories": "Plugin categories",
       "open": "Open {name}",
       "close": "Close",
       "pluginDocs": "Plugin docs",
       "playOverview": "Play overview",
       "pauseOverview": "Pause overview",
-      "fullscreen": "Open in fullscreen",
-      "empty": "No plugins at this level yet."
+      "fullscreen": "Open in fullscreen"
     },
     "how": {
       "label": "How it works",
@@ -391,9 +389,6 @@
       "surfacesTitle": "What a plugin brings, and where it shows up in CDT",
       "openInDocs": "Open in docs"
     },
-    "maturity": {
-      "label": "Maturity model"
-    },
     "build": {
       "label": "Build your own",
       "title": "Start from something that already runs.",
@@ -402,12 +397,23 @@
       "withAi": "Build with AI",
       "community": "Community plugins"
     },
-    "levels": {
-      "1": "Descriptive",
-      "2": "Informative",
-      "3": "Predictive",
-      "4": "Prescriptive",
-      "5": "Autonomous"
+    "categories": {
+      "live-data": {
+        "name": "Live data",
+        "body": "Real-time feeds on the map: transit, flights, sensors and hazards."
+      },
+      "planning": {
+        "name": "Planning",
+        "body": "City and asset data turned into evidence for decisions, from permits to what-if scenarios."
+      },
+      "facility-management": {
+        "name": "Facility management",
+        "body": "Running buildings day to day: spaces, assets and maintenance."
+      },
+      "utilities": {
+        "name": "Utilities",
+        "body": "General-purpose tools for the map and the BIM viewer."
+      }
     }
   }
 }

@@ -4,7 +4,6 @@ import { useCallback, useEffect, useState } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import PluginGallery from './PluginGallery'
-import PluginMaturityEmbed from './PluginMaturityEmbed'
 import PluginSystemIntro from './PluginSystemIntro'
 import SectionHeading from './SectionHeading'
 import { COMMUNITY_PLUGINS_URL, PLUGINS, PLUGINS_DOCS_URL } from '@/data/plugins'
@@ -34,14 +33,6 @@ export default function PluginsPageBody({ assetsUrl }: { assetsUrl: string }) {
   return (
     <>
       <PluginGallery assetsUrl={assetsUrl} expandedSlug={expandedSlug} onExpand={expand} />
-
-      <section id="maturity" className="py-24 relative" style={{ background: 'var(--hp-low)' }}>
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto">
-            <PluginMaturityEmbed onSelect={expand} />
-          </div>
-        </div>
-      </section>
 
       <PluginSystemIntro />
 

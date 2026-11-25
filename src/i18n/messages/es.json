@@ -356,15 +356,13 @@
     "gallery": {
       "label": "Galería",
       "title": "Plugins en acción",
-      "filterAll": "Todos",
-      "levelName": "Nivel {n} · {name}",
+      "categories": "Categorías de plugins",
       "open": "Abrir {name}",
       "close": "Cerrar",
       "pluginDocs": "Documentación",
       "playOverview": "Reproducir presentación",
       "pauseOverview": "Pausar presentación",
-      "fullscreen": "Pantalla completa",
-      "empty": "Todavía no hay plugins en este nivel."
+      "fullscreen": "Pantalla completa"
     },
     "how": {
       "label": "Cómo funciona",
@@ -391,9 +389,6 @@
       "surfacesTitle": "Qué aporta un plugin y dónde aparece en CDT",
       "openInDocs": "Abrir en la documentación"
     },
-    "maturity": {
-      "label": "Modelo de madurez"
-    },
     "build": {
       "label": "Cree el suyo",
       "title": "Empiece con algo que ya funciona.",
@@ -402,12 +397,23 @@
       "withAi": "Crear con IA",
       "community": "Plugins de la comunidad"
     },
-    "levels": {
-      "1": "Descriptivo",
-      "2": "Informativo",
-      "3": "Predictivo",
-      "4": "Prescriptivo",
-      "5": "Autónomo"
+    "categories": {
+      "live-data": {
+        "name": "Datos en directo",
+        "body": "Flujos en tiempo real sobre el mapa: transporte público, vuelos, sensores y riesgos."
+      },
+      "planning": {
+        "name": "Planificación",
+        "body": "Datos de la ciudad y de los activos al servicio de las decisiones, desde permisos hasta escenarios hipotéticos."
+      },
+      "facility-management": {
+        "name": "Gestión de instalaciones",
+        "body": "La operación diaria de los edificios: espacios, activos y mantenimiento."
+      },
+      "utilities": {
+        "name": "Utilidades",
+        "body": "Herramientas de uso general para el mapa y el visor BIM."
+      }
     }
   }
 }
