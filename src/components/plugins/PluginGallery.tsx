@@ -43,7 +43,7 @@ export default function PluginGallery({ assetsUrl, expandedSlug, onExpand }: Plu
 
   const plugins = useMemo(() => sortedPlugins(locale), [locale])
   const usedCategories = PLUGIN_CATEGORIES.filter((c) => plugins.some((p) => p.category === c))
-  const visible = plugins.filter((p) => filter === 'all' || p.category === filter || p.slug === expandedSlug)
+  const isVisible = (p: PluginEntry) => filter === 'all' || p.category === filter || p.slug === expandedSlug
 
   useEffect(() => {
     if (!expandedSlug) return
@@ -90,11 +90,12 @@ export default function PluginGallery({ assetsUrl, expandedSlug, onExpand }: Plu
               className="grid gap-3 sm:gap-4"
               style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 15rem), 1fr))', gridAutoFlow: 'dense' }}
             >
-              {visible.map((plugin) => (
+              {plugins.map((plugin) => (
                 <PluginTile
                   key={plugin.slug}
                   plugin={plugin}
                   assetsUrl={assetsUrl}
+                  hidden={!isVisible(plugin)}
                   expanded={plugin.slug === expandedSlug}
                   canHover={canHover}
                   onToggle={() => onExpand(plugin.slug === expandedSlug ? null : plugin.slug)}
@@ -129,12 +130,13 @@ function FilterChip({ active, onClick, children }: { active: boolean; onClick: (
 interface PluginTileProps {
   plugin: PluginEntry
   assetsUrl: string
+  hidden: boolean
   expanded: boolean
   canHover: boolean
   onToggle: () => void
 }
 
-function PluginTile({ plugin, assetsUrl, expanded, canHover, onToggle }: PluginTileProps) {
+function PluginTile({ plugin, assetsUrl, hidden, expanded, canHover, onToggle }: PluginTileProps) {
   const t = useTranslations('PluginsPage')
   const locale = useLocale() as Language
   const tileRef = useRef<HTMLElement>(null)
@@ -176,6 +178,7 @@ function PluginTile({ plugin, assetsUrl, expanded, canHover, onToggle }: PluginT
     <motion.article
       ref={tileRef}
       id={plugin.slug}
+      hidden={hidden}
       layout
       transition={{ duration: 0.35, ease: [0.2, 0.8, 0.2, 1] }}
       className="scroll-mt-28"
