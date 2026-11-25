@@ -9,32 +9,18 @@ import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 
 import DeckOverlay from './DeckOverlay'
-import AnimatedArcLayer from './AnimatedArcLayer'
+import { buildConnections, type Connection } from './globeConnections'
+import PulseArcLayer from './PulseArcLayer'
 
-interface Flight {
-  time1: number
-  time2: number
-  lon1: number
-  lat1: number
-  alt1: number
-  lon2: number
-  lat2: number
-  alt2: number
-}
-
-// Dataset matches the deck.gl maplibre example.
-const FLIGHTS_URL =
-  'https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/globe/2020-01-14.csv'
-const ANIMATION_SPEED = 320
-
-// Length of time window to show active flights, in seconds. 2400s = 40min, which is a reasonable duration for a flight.
-const TIME_WINDOW = 2400
-const SEC_PER_DAY = 86400
-// Dataset offset (seconds since midnight UTC) so the loop opens mid-day with the globe already busy.
-const START_TIME = 43200
+const CONNECTIONS = buildConnections()
 
 const DARK_PURPLE: [number, number, number] = [88, 28, 135]
 const TERRACOTTA: [number, number, number] = [222, 101, 53]
+const PULSE_COLOR: [number, number, number] = [255, 236, 210]
+const HOVER_GLOW: [number, number, number, number] = [255, 236, 210, 255]
+const ARC_HEIGHT = 0.15
+const PULSE_LENGTH = 0.18
+const PICKING_RADIUS_PX = 6
 
 interface PaddingOptions {
   top: number
@@ -125,12 +111,9 @@ function sideToZoom(side: number) {
 export default function Globe({ mapStyleUrl, padding, interactive = true, sizeToHeight }: Props) {
   const [side, setSide] = React.useState(DEFAULT_SIDE)
   const [zoom, setZoom] = React.useState(() => sideToZoom(DEFAULT_SIDE))
-  const [flights, setFlights] = React.useState<Flight[]>([])
-  const [currentTime, setCurrentTime] = React.useState(0)
   const mapRef = React.useRef<MapRef>(null)
   const paddingRef = React.useRef<PaddingOptions | undefined>(padding)
   const animationRef = React.useRef<number>(0)
-  const timeAnimRef = React.useRef<number>(0)
   const userInteracting = React.useRef(false)
   const resumeTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -154,71 +137,52 @@ export default function Globe({ mapStyleUrl, padding, interactive = true, sizeTo
   React.useEffect(() => {
     return () => {
       cancelAnimationFrame(animationRef.current)
-      cancelAnimationFrame(timeAnimRef.current)
       if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current)
     }
   }, [])
 
-  React.useEffect(() => {
-    let cancelled = false
-    fetch(FLIGHTS_URL)
-      .then((r) => r.text())
-      .then((text) => {
-        if (cancelled) return
-        const lines = text.trim().split('\n').slice(1)
-        const parsed: Flight[] = []
-        // Sample ~half the rows for a lighter scene.
-        for (let i = 0; i < lines.length; i += 2) {
-          const v = lines[i].split(',')
-          parsed.push({
-            time1: Number(v[0]),
-            time2: Number(v[1]),
-            lon1: Number(v[2]),
-            lat1: Number(v[3]),
-            alt1: Number(v[4]),
-            lon2: Number(v[5]),
-            lat2: Number(v[6]),
-            alt2: Number(v[7]),
-          })
-        }
-        setFlights(parsed)
-      })
-      .catch(() => { })
-    return () => {
-      cancelled = true
-    }
-  }, [])
-
-  React.useEffect(() => {
-    const start = performance.now()
-    const tick = (now: number) => {
-      const elapsed = (now - start) / 1000
-      setCurrentTime((START_TIME + elapsed * ANIMATION_SPEED) % SEC_PER_DAY)
-      timeAnimRef.current = requestAnimationFrame(tick)
-    }
-    timeAnimRef.current = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(timeAnimRef.current)
-  }, [])
-
-  const layers = React.useMemo(() => {
-    if (!flights.length) return []
-    return [
-      new AnimatedArcLayer<Flight>({
-        id: 'flights',
-        data: flights,
-        getSourcePosition: (d) => [d.lon1, d.lat1, d.alt1],
-        getTargetPosition: (d) => [d.lon2, d.lat2, d.alt2],
-        getSourceTimestamp: (d) => d.time1,
-        getTargetTimestamp: (d) => d.time2,
+  const layers = React.useMemo(
+    () => [
+      new PulseArcLayer<Connection>({
+        id: 'connection-halos',
+        data: CONNECTIONS,
+        getSourcePosition: (d) => d.from,
+        getTargetPosition: (d) => d.to,
+        getPhase: (d) => d.phase,
+        getDuration: (d) => d.duration,
         getSourceColor: TERRACOTTA,
         getTargetColor: DARK_PURPLE,
-        getHeight: 0.1,
-        getWidth: 2,
-        timeRange: [currentTime, currentTime + TIME_WINDOW],
+        getHeight: ARC_HEIGHT,
+        getWidth: 7,
+        pulseLength: PULSE_LENGTH,
+        pulseColor: PULSE_COLOR,
+        baseAlpha: 0,
+        pulseAlpha: 0.3,
         parameters: { cullMode: 'none' },
       }),
-    ]
-  }, [flights, currentTime])
+      new PulseArcLayer<Connection>({
+        id: 'connections',
+        data: CONNECTIONS,
+        getSourcePosition: (d) => d.from,
+        getTargetPosition: (d) => d.to,
+        getPhase: (d) => d.phase,
+        getDuration: (d) => d.duration,
+        getSourceColor: TERRACOTTA,
+        getTargetColor: DARK_PURPLE,
+        getHeight: ARC_HEIGHT,
+        getWidth: 1.5,
+        pulseLength: PULSE_LENGTH,
+        pulseColor: PULSE_COLOR,
+        baseAlpha: 0.45,
+        pulseAlpha: 1,
+        parameters: { cullMode: 'none' },
+        pickable: interactive,
+        autoHighlight: true,
+        highlightColor: HOVER_GLOW,
+      }),
+    ],
+    [interactive],
+  )
 
   React.useEffect(() => {
     const map = mapRef.current?.getMap()
@@ -319,6 +283,8 @@ export default function Globe({ mapStyleUrl, padding, interactive = true, sizeTo
           center: { lng: center.lng, lat: center.lat },
           padding: map.getPadding(),
         })
+      } else {
+        map.triggerRepaint()
       }
       animationRef.current = requestAnimationFrame(rotate)
     }
@@ -354,7 +320,7 @@ export default function Globe({ mapStyleUrl, padding, interactive = true, sizeTo
         doubleClickZoom={false}
         touchZoomRotate={false}
       >
-        <DeckOverlay interleaved layers={layers} />
+        <DeckOverlay interleaved layers={layers} pickingRadius={PICKING_RADIUS_PX} />
       </Map>
     </div>
   )
