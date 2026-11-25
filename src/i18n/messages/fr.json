@@ -356,15 +356,13 @@
     "gallery": {
       "label": "Galerie",
       "title": "Plugiciels en action",
-      "filterAll": "Tous",
-      "levelName": "Niveau {n} · {name}",
+      "categories": "Catégories de plugiciels",
       "open": "Ouvrir {name}",
       "close": "Fermer",
       "pluginDocs": "Documentation",
       "playOverview": "Lire la présentation",
       "pauseOverview": "Mettre en pause",
-      "fullscreen": "Plein écran",
-      "empty": "Aucun plugiciel à ce niveau pour l’instant."
+      "fullscreen": "Plein écran"
     },
     "how": {
       "label": "Fonctionnement",
@@ -391,9 +389,6 @@
       "surfacesTitle": "Ce qu’apporte un plugiciel, et où il apparaît dans CDT",
       "openInDocs": "Ouvrir la documentation"
     },
-    "maturity": {
-      "label": "Modèle de maturité"
-    },
     "build": {
       "label": "Créer le vôtre",
       "title": "Partez de quelque chose qui fonctionne déjà.",
@@ -402,12 +397,23 @@
       "withAi": "Créer avec l’IA",
       "community": "Plugiciels de la communauté"
     },
-    "levels": {
-      "1": "Descriptif",
-      "2": "Informatif",
-      "3": "Prédictif",
-      "4": "Prescriptif",
-      "5": "Autonome"
+    "categories": {
+      "live-data": {
+        "name": "Données en direct",
+        "body": "Des flux en temps réel sur la carte : transport en commun, vols, capteurs et aléas."
+      },
+      "planning": {
+        "name": "Planification",
+        "body": "Les données de la ville et des actifs mises au service des décisions, des permis aux scénarios prospectifs."
+      },
+      "facility-management": {
+        "name": "Gestion des installations",
+        "body": "L’exploitation courante des bâtiments : espaces, actifs et entretien."
+      },
+      "utilities": {
+        "name": "Utilitaires",
+        "body": "Des outils polyvalents pour la carte et la visionneuse BIM."
+      }
     }
   }
 }

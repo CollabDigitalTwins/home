@@ -6,11 +6,11 @@ import { ArrowUpRight, X } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import PluginOverviewVideo from './PluginOverviewVideo'
 import {
-  MATURITY_LEVELS,
+  PLUGIN_CATEGORIES,
   PLUGINS_DOCS_URL,
   pluginVideoUrl,
   sortedPlugins,
-  type MaturityLevel,
+  type PluginCategory,
   type PluginEntry,
 } from '@/data/plugins'
 import type { Language } from '@/lib/language'
@@ -21,7 +21,7 @@ interface PluginGalleryProps {
   onExpand: (slug: string | null) => void
 }
 
-type LevelFilter = MaturityLevel | 'all'
+type CategoryFilter = PluginCategory | 'all'
 
 function useCanHover(): boolean {
   const [canHover, setCanHover] = useState(false)
@@ -38,12 +38,12 @@ function useCanHover(): boolean {
 export default function PluginGallery({ assetsUrl, expandedSlug, onExpand }: PluginGalleryProps) {
   const t = useTranslations('PluginsPage')
   const locale = useLocale() as Language
-  const [filter, setFilter] = useState<LevelFilter>('all')
+  const [filter, setFilter] = useState<CategoryFilter>('all')
   const canHover = useCanHover()
 
   const plugins = useMemo(() => sortedPlugins(locale), [locale])
-  const usedLevels = MATURITY_LEVELS.filter((l) => plugins.some((p) => p.level === l))
-  const visible = plugins.filter((p) => filter === 'all' || p.level === filter || p.slug === expandedSlug)
+  const usedCategories = PLUGIN_CATEGORIES.filter((c) => plugins.some((p) => p.category === c))
+  const visible = plugins.filter((p) => filter === 'all' || p.category === filter || p.slug === expandedSlug)
 
   useEffect(() => {
     if (!expandedSlug) return
@@ -71,16 +71,16 @@ export default function PluginGallery({ assetsUrl, expandedSlug, onExpand }: Plu
               </div>
               <div
                 role="group"
-                aria-label={t('maturity.label')}
+                aria-label={t('gallery.categories')}
                 className="flex gap-2 overflow-x-auto max-w-full pb-1 [&::-webkit-scrollbar]:hidden"
                 style={{ scrollbarWidth: 'none' }}
               >
                 <FilterChip active={filter === 'all'} onClick={() => setFilter('all')}>
                   {t('gallery.filterAll')}
                 </FilterChip>
-                {usedLevels.map((level) => (
-                  <FilterChip key={level} active={filter === level} onClick={() => setFilter(level)}>
-                    {t('gallery.levelName', { n: level, name: t(`levels.${level}`) })}
+                {usedCategories.map((category) => (
+                  <FilterChip key={category} active={filter === category} onClick={() => setFilter(category)}>
+                    {t(`categories.${category}.name`)}
                   </FilterChip>
                 ))}
               </div>
@@ -170,7 +170,7 @@ function PluginTile({ plugin, assetsUrl, expanded, canHover, onToggle }: PluginT
   }
 
   const showName = expanded ? false : hovering || !canHover
-  const levelBadge = t('gallery.levelName', { n: plugin.level, name: t(`levels.${plugin.level}`) })
+  const categoryName = t(`categories.${plugin.category}.name`)
 
   return (
     <motion.article
@@ -225,7 +225,7 @@ function PluginTile({ plugin, assetsUrl, expanded, canHover, onToggle }: PluginT
                 >
                   {name}
                   <span className="mt-1 block font-mono text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-white/75">
-                    {levelBadge}
+                    {categoryName}
                   </span>
                 </span>
                 <span
@@ -260,7 +260,7 @@ function PluginTile({ plugin, assetsUrl, expanded, canHover, onToggle }: PluginT
               className="inline-block font-mono text-[0.7rem] font-semibold uppercase tracking-[0.14em]"
               style={{ color: 'var(--hp-primary-container)' }}
             >
-              {levelBadge}
+              {categoryName}
             </span>
             <h3
               className="font-display font-bold"
