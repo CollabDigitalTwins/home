@@ -161,7 +161,6 @@ export default function TeamSection() {
     <section
       id="team"
       className="py-20 md:py-24 relative"
-      style={{ background: 'var(--hp-lowest)' }}
     >
       <div className="container mx-auto px-6">
         <motion.div

@@ -1,38 +1,15 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import {
-  Unlock,
-  ShieldCheck,
-  CircleDollarSign,
-  Layers,
-  type LucideIcon,
-} from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
-interface Pillar {
-  key: 'noLockIn' | 'dataSovereignty' | 'costRecovery' | 'multidisciplinary'
-  icon: LucideIcon
-}
+const PILLARS = ['noLockIn', 'dataSovereignty', 'costRecovery', 'multidisciplinary'] as const
 
-const PILLARS: Pillar[] = [
-  { key: 'noLockIn', icon: Unlock },
-  { key: 'dataSovereignty', icon: ShieldCheck },
-  { key: 'costRecovery', icon: CircleDollarSign },
-  { key: 'multidisciplinary', icon: Layers },
-]
-
-interface WhyCdtSectionProps {
-  background?: string
-}
-
-export default function WhyCdtSection({
-  background = 'var(--hp-surface)',
-}: WhyCdtSectionProps) {
+export default function WhyCdtSection() {
   const tWhy = useTranslations('HomePage.whyCdt')
 
   return (
-    <section id="whyCdt" className="py-20 md:py-24 relative" style={{ background }}>
+    <section id="whyCdt" className="py-20 md:py-24 relative">
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -57,25 +34,16 @@ export default function WhyCdtSection({
           </motion.div>
 
           <div className="grid sm:grid-cols-2 gap-x-10 lg:gap-x-16">
-            {PILLARS.map(({ key, icon: Icon }, idx) => (
+            {PILLARS.map((key, idx) => (
               <motion.div
                 key={key}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.5, delay: 0.06 * idx }}
-                className="flex gap-4 py-6 border-t"
+                className="py-6 border-t"
                 style={{ borderColor: 'var(--hp-outline-variant)' }}
               >
-                <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                  style={{ background: 'rgba(239, 145, 97, 0.1)' }}
-                >
-                  <Icon
-                    className="w-5 h-5"
-                    style={{ color: 'var(--hp-primary-container)' }}
-                  />
-                </div>
                 <div className="space-y-1.5">
                   <h3
                     className="font-display font-bold"

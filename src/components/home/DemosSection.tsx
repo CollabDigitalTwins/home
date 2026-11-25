@@ -111,11 +111,7 @@ export default function DemosSection({ assetsUrl }: DemosSectionProps) {
     }
 
     return (
-        <section
-            id="demos"
-            className="py-32 relative"
-            style={{ background: 'var(--hp-low)' }}
-        >
+        <section id="demos" className="py-32 relative">
             <div className="container mx-auto px-6">
                 <div className="max-w-6xl mx-auto">
                     <motion.div

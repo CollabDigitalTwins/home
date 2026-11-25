@@ -33,7 +33,6 @@ export default function RecognitionSection() {
     <section
       id="recognition"
       className="py-20 md:py-24 relative"
-      style={{ background: 'var(--hp-lowest)' }}
     >
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto">

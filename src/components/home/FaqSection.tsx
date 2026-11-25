@@ -60,7 +60,7 @@ export default function FaqSection() {
   }
 
   return (
-    <section className="py-20 md:py-24 relative" style={{ background: 'var(--hp-low)' }}>
+    <section className="py-20 md:py-24 relative">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}

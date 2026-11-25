@@ -36,7 +36,7 @@ export default function PluginsPageBody({ assetsUrl }: { assetsUrl: string }) {
 
       <PluginSystemIntro />
 
-      <section id="build" className="py-24 relative" style={{ background: 'var(--hp-low)' }}>
+      <section id="build" className="py-24 relative">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-6xl mx-auto">
             <SectionHeading label={t('build.label')} title={t('build.title')} body={t('build.body')} />

@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/Button'
 import AnimatedBackground from '@/components/ui/AnimatedBackground'
 import Globe from '@/components/ui/Globe'
+import TrustedBy from './TrustedBy'
 import { usePlatformLink } from '@/hooks/usePlatformLink'
 
 const GH_URL = 'https://github.com/CollabDigitalTwins/core'
@@ -123,51 +124,62 @@ export default function HeroSection({ assetsUrl }: HeroSectionProps) {
               {tHero('description')}
             </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="flex flex-col sm:flex-row flex-wrap items-start gap-3 pt-2"
-            >
-              <Button
-                size="lg"
-                className="btn-sovereign text-base px-8 w-full sm:w-auto"
-                asChild
+            <div className="sm:w-fit space-y-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="flex flex-col sm:flex-row flex-wrap items-start gap-3 pt-2"
               >
-                <a
-                  href="https://app.collabdt.org/cdt"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={handlePlatformClick}
-                >
-                  {tHero('secondaryCta')}
-                </a>
-              </Button>
-              <div className="flex items-center gap-3 w-full sm:w-auto">
                 <Button
                   size="lg"
-                  className="btn-glass text-base px-8 flex-1 sm:flex-none"
+                  className="btn-sovereign text-base px-8 w-full sm:w-auto"
                   asChild
                 >
-                  <a href="https://docs.collabdt.org/" target="_blank" rel="noopener noreferrer">
-                    {tHero('docsButton')}
+                  <a
+                    href="https://app.collabdt.org/cdt"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handlePlatformClick}
+                  >
+                    {tHero('secondaryCta')}
                   </a>
                 </Button>
-                <Button
-                  size="lg"
-                  className="btn-glass text-base px-4 md:px-6 flex-none"
-                  aria-label={tGh('githubAria')}
-                  title={tGh('viewOnGithub')}
-                  asChild
-                >
-                  <a href={GH_URL} target="_blank" rel="noopener noreferrer">
-                    <Github className="w-4 h-4" aria-hidden />
-                    {/* Label on desktop only; phones keep the compact icon. */}
-                    <span className="hidden md:inline">{tHero('sourceCodeButton')}</span>
-                  </a>
-                </Button>
-              </div>
-            </motion.div>
+                <div className="flex items-center gap-3 w-full sm:w-auto">
+                  <Button
+                    size="lg"
+                    className="btn-glass text-base px-8 flex-1 sm:flex-none"
+                    asChild
+                  >
+                    <a href="https://docs.collabdt.org/" target="_blank" rel="noopener noreferrer">
+                      {tHero('docsButton')}
+                    </a>
+                  </Button>
+                  <Button
+                    size="lg"
+                    className="btn-glass text-base px-4 md:px-6 flex-none"
+                    aria-label={tGh('githubAria')}
+                    title={tGh('viewOnGithub')}
+                    asChild
+                  >
+                    <a href={GH_URL} target="_blank" rel="noopener noreferrer">
+                      <Github className="w-4 h-4" aria-hidden />
+                      {/* Label on desktop only; phones keep the compact icon. */}
+                      <span className="hidden md:inline">{tHero('sourceCodeButton')}</span>
+                    </a>
+                  </Button>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.55 }}
+                className="pt-6"
+              >
+                <TrustedBy />
+              </motion.div>
+            </div>
           </motion.div>
 
           {!isMobile && (

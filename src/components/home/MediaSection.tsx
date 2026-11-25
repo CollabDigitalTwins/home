@@ -82,7 +82,6 @@ export default function MediaSection() {
     <section
       id="media"
       className="py-20 md:py-24 relative"
-      style={{ background: 'var(--hp-low)' }}
     >
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto">
@@ -123,11 +122,11 @@ export default function MediaSection() {
                   onClick={() => setActive(filter)}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--hp-primary-container)]"
                   style={{
-                    background: selected ? 'var(--hp-primary-container)' : 'var(--hp-lowest)',
+                    background: selected ? 'var(--hp-primary-container)' : 'var(--hp-mid)',
                     color: selected ? 'var(--hp-on-primary-ctr)' : 'var(--hp-on-surface-variant)',
                     border: selected
                       ? '1px solid var(--hp-primary-container)'
-                      : '1px solid rgba(74, 61, 92, 0.18)',
+                      : '1px solid var(--hp-outline-variant)',
                   }}
                   aria-pressed={selected}
                 >
@@ -147,28 +146,18 @@ export default function MediaSection() {
                 onClick={() => scrollByPage(-1)}
                 disabled={!canScrollLeft}
                 aria-label={t('previousPage')}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--hp-primary-container)] disabled:opacity-40 disabled:cursor-not-allowed"
-                style={{
-                  background: 'var(--hp-lowest)',
-                  color: 'var(--hp-on-surface-variant)',
-                  border: '1px solid rgba(74, 61, 92, 0.18)',
-                }}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full text-[color:var(--hp-on-surface-variant)] transition-colors hover:text-[color:var(--hp-on-surface)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--hp-primary-container)] disabled:opacity-40 disabled:cursor-not-allowed"
               >
-                <ChevronLeft className="h-4 w-4" />
+                <ChevronLeft className="h-5 w-5" />
               </button>
               <button
                 type="button"
                 onClick={() => scrollByPage(1)}
                 disabled={!canScrollRight}
                 aria-label={t('nextPage')}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--hp-primary-container)] disabled:opacity-40 disabled:cursor-not-allowed"
-                style={{
-                  background: 'var(--hp-lowest)',
-                  color: 'var(--hp-on-surface-variant)',
-                  border: '1px solid rgba(74, 61, 92, 0.18)',
-                }}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full text-[color:var(--hp-on-surface-variant)] transition-colors hover:text-[color:var(--hp-on-surface)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--hp-primary-container)] disabled:opacity-40 disabled:cursor-not-allowed"
               >
-                <ChevronRight className="h-4 w-4" />
+                <ChevronRight className="h-5 w-5" />
               </button>
             </div>
           </div>

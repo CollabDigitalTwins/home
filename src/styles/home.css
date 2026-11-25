@@ -83,6 +83,13 @@ html:has(.hp) {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
 }
 
+/* A transformed ancestor breaks background-attachment: fixed on the .hp-input fields inside. */
+.tonal-card.tonal-card-static:hover {
+  background: var(--hp-mid);
+  transform: none;
+  box-shadow: none;
+}
+
 .glass-nav {
   background: var(--hp-surface);
 }
@@ -155,8 +162,8 @@ html:has(.hp) {
 }
 
 .hp-input {
-  background: var(--hp-lowest) !important;
-  border: 1px solid transparent !important;
+  background: var(--hp-surface) fixed !important;
+  border: 1px solid var(--hp-outline-variant) !important;
   color: var(--hp-on-surface) !important;
   transition: background 0.2s ease,
               border-color 0.2s ease,
@@ -169,8 +176,8 @@ html:has(.hp) {
 }
 
 .hp-input:focus {
-  background: var(--hp-high) !important;
-  border-color: rgba(74, 61, 92, 0.18) !important;
+  background: var(--hp-surface) fixed !important;
+  border-color: var(--hp-outline) !important;
   box-shadow: 0 0 0 3px rgba(74, 61, 92, 0.1) !important;
   outline: none !important;
 }
@@ -241,8 +248,8 @@ html:has(.hp) {
 }
 
 .dark .hp-input:focus {
-  background: var(--hp-high) !important;
-  border-color: rgba(74, 61, 92, 0.18) !important;
+  background: var(--hp-surface) fixed !important;
+  border-color: var(--hp-outline) !important;
   box-shadow: 0 0 0 3px rgba(74, 61, 92, 0.1) !important;
 }
 

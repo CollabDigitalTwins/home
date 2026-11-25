@@ -52,7 +52,6 @@ export default function ContactSection({ onSubmit, isSubmitting = false }: Conta
     <section
       id="contact"
       className="pt-32 md:pt-40 pb-20 md:pb-24 relative"
-      style={{ background: 'var(--hp-low)' }}
     >
       <div className="container mx-auto px-6">
         <motion.div
@@ -83,7 +82,7 @@ export default function ContactSection({ onSubmit, isSubmitting = false }: Conta
           </div>
 
           <div
-            className="tonal-card p-8 md:p-10"
+            className="tonal-card tonal-card-static p-8 md:p-10"
             style={
               isDemoRequest
                 ? { boxShadow: '0 0 0 1px var(--hp-primary-container), 0 20px 40px rgba(239,145,97,0.15)' }
@@ -110,13 +109,13 @@ export default function ContactSection({ onSubmit, isSubmitting = false }: Conta
                       style={{
                         background: selected
                           ? 'var(--hp-primary-container)'
-                          : 'var(--hp-lowest)',
+                          : 'var(--hp-mid)',
                         color: selected
                           ? 'var(--hp-on-primary-ctr)'
                           : 'var(--hp-on-surface-variant)',
                         border: selected
                           ? '1px solid var(--hp-primary-container)'
-                          : '1px solid rgba(74, 61, 92, 0.18)',
+                          : '1px solid var(--hp-outline-variant)',
                       }}
                       aria-pressed={selected}
                     >
