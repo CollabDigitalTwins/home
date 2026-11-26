@@ -77,7 +77,7 @@ const PARTNERS: Partner[] = [
 ]
 
 const LOGO_CLASS =
-  'h-8 md:h-9 w-auto object-contain saturate-[0.3] opacity-80 transition-all duration-300 group-hover:saturate-100 group-hover:opacity-100 group-focus-visible:saturate-100 group-focus-visible:opacity-100'
+  'h-5 xs:h-7 sm:h-8 md:h-9 w-auto object-contain saturate-[0.3] opacity-80 transition-all duration-300 group-hover:saturate-100 group-hover:opacity-100 group-focus-visible:saturate-100 group-focus-visible:opacity-100'
 
 const ITEM_CLASS =
   'group relative flex items-center rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--hp-primary-container)]'
@@ -128,7 +128,7 @@ export default function TrustedBy() {
   return (
     <div className="space-y-4">
       <div className="hero-tagline">{t('heading')}</div>
-      <ul className="flex flex-wrap items-center justify-between gap-x-4 gap-y-4" aria-label={t('heading')}>
+      <ul className="flex flex-wrap items-center justify-between gap-x-3 xs:gap-x-4 gap-y-4" aria-label={t('heading')}>
         {PARTNERS.map((partner) => (
           <LogoItem key={partner.file} partner={partner} />
         ))}

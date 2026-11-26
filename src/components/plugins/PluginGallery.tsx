@@ -87,8 +87,8 @@ export default function PluginGallery({ assetsUrl, expandedSlug, onExpand }: Plu
             </div>
 
             <div
-              className="grid gap-3 sm:gap-4"
-              style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 15rem), 1fr))', gridAutoFlow: 'dense' }}
+              className="grid grid-cols-3 gap-2 sm:gap-4 sm:[grid-template-columns:repeat(auto-fill,minmax(15rem,1fr))]"
+              style={{ gridAutoFlow: 'dense' }}
             >
               {plugins.map((plugin) => (
                 <PluginTile
@@ -186,7 +186,7 @@ function PluginTile({ plugin, assetsUrl, hidden, expanded, canHover, onToggle }:
     >
       <div className={expanded ? 'tonal-card overflow-hidden' : ''}>
         <div
-          className={`group relative w-full aspect-video overflow-hidden bg-black ${expanded ? 'rounded-t-xl' : 'rounded-2xl'}`}
+          className={`group relative w-full aspect-video overflow-hidden bg-black ${expanded ? 'rounded-t-xl' : 'rounded-lg sm:rounded-2xl'}`}
           onMouseEnter={startPreview}
           onMouseLeave={stopPreview}
         >
@@ -213,17 +213,17 @@ function PluginTile({ plugin, assetsUrl, hidden, expanded, canHover, onToggle }:
                 onBlur={stopPreview}
                 aria-expanded={false}
                 aria-label={t('gallery.open', { name })}
-                className="absolute inset-0 w-full h-full text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 rounded-2xl"
+                className="absolute inset-0 w-full h-full text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 rounded-lg sm:rounded-2xl"
               >
                 <div
-                  className="absolute inset-0 transition-opacity duration-300"
+                  className="hidden sm:block absolute inset-0 transition-opacity duration-300"
                   style={{
                     background: 'linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.72) 100%)',
                     opacity: showName ? 1 : 0,
                   }}
                 />
                 <span
-                  className="absolute bottom-0 left-0 right-0 p-3 text-left font-display font-semibold text-white text-[0.9rem] leading-tight transition-all duration-300"
+                  className="hidden sm:block absolute bottom-0 left-0 right-0 p-3 text-left font-display font-semibold text-white text-[0.9rem] leading-tight transition-all duration-300"
                   style={{ opacity: showName ? 1 : 0, transform: showName ? 'none' : 'translateY(6px)', letterSpacing: '-0.01em' }}
                 >
                   {name}
@@ -232,7 +232,7 @@ function PluginTile({ plugin, assetsUrl, hidden, expanded, canHover, onToggle }:
                   </span>
                 </span>
                 <span
-                  className="absolute top-2 left-2 rounded-full px-2.5 py-0.5 text-[0.72rem] font-semibold text-white"
+                  className="absolute top-1 left-1 sm:top-2 sm:left-2 max-w-[calc(100%-0.5rem)] truncate rounded-full px-1.5 sm:px-2.5 py-0.5 text-[0.6rem] sm:text-[0.72rem] font-semibold text-white"
                   style={{ background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(6px)' }}
                 >
                   {plugin.shortName[locale]}

@@ -1,14 +1,16 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import { Github } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/Button'
 import AnimatedBackground from '@/components/ui/AnimatedBackground'
-import Globe from '@/components/ui/Globe'
 import TrustedBy from './TrustedBy'
 import { usePlatformLink } from '@/hooks/usePlatformLink'
+
+const Globe = dynamic(() => import('@/components/ui/Globe'), { ssr: false })
 
 const GH_URL = 'https://github.com/CollabDigitalTwins/core'
 const MAP_STYLE =

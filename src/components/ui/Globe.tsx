@@ -17,10 +17,8 @@ const CONNECTIONS = buildConnections()
 const DARK_PURPLE: [number, number, number] = [88, 28, 135]
 const TERRACOTTA: [number, number, number] = [222, 101, 53]
 const PULSE_COLOR: [number, number, number] = [255, 236, 210]
-const HOVER_GLOW: [number, number, number, number] = [255, 236, 210, 255]
 const ARC_HEIGHT = 0.15
 const PULSE_LENGTH = 0.18
-const PICKING_RADIUS_PX = 6
 
 interface PaddingOptions {
   top: number
@@ -114,6 +112,8 @@ export default function Globe({ mapStyleUrl, padding, interactive = true, sizeTo
   const mapRef = React.useRef<MapRef>(null)
   const paddingRef = React.useRef<PaddingOptions | undefined>(padding)
   const animationRef = React.useRef<number>(0)
+  const containerRef = React.useRef<HTMLDivElement>(null)
+  const onScreenRef = React.useRef(true)
   const userInteracting = React.useRef(false)
   const resumeTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -133,6 +133,17 @@ export default function Globe({ mapStyleUrl, padding, interactive = true, sizeTo
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [sizeToHeight])
+
+  React.useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(([entry]) => {
+      onScreenRef.current = entry.isIntersecting
+      if (entry.isIntersecting) mapRef.current?.getMap()?.triggerRepaint()
+    })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   React.useEffect(() => {
     return () => {
@@ -176,12 +187,9 @@ export default function Globe({ mapStyleUrl, padding, interactive = true, sizeTo
         baseAlpha: 0.45,
         pulseAlpha: 1,
         parameters: { cullMode: 'none' },
-        pickable: interactive,
-        autoHighlight: true,
-        highlightColor: HOVER_GLOW,
       }),
     ],
-    [interactive],
+    [],
   )
 
   React.useEffect(() => {
@@ -276,6 +284,10 @@ export default function Globe({ mapStyleUrl, padding, interactive = true, sizeTo
     map.on('dragend', onInteractionEnd)
 
     function rotate() {
+      if (!onScreenRef.current) {
+        animationRef.current = requestAnimationFrame(rotate)
+        return
+      }
       if (!userInteracting.current) {
         const center = map.getCenter()
         center.lng -= ROTATION_SPEED
@@ -294,6 +306,7 @@ export default function Globe({ mapStyleUrl, padding, interactive = true, sizeTo
 
   return (
     <div
+      ref={containerRef}
       className={`${
         interactive ? 'pointer-events-auto' : 'pointer-events-none'
       } opacity-75 absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2`}
@@ -320,7 +333,7 @@ export default function Globe({ mapStyleUrl, padding, interactive = true, sizeTo
         doubleClickZoom={false}
         touchZoomRotate={false}
       >
-        <DeckOverlay interleaved layers={layers} pickingRadius={PICKING_RADIUS_PX} />
+        <DeckOverlay interleaved layers={layers} />
       </Map>
     </div>
   )
