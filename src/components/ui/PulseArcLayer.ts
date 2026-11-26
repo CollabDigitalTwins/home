@@ -83,8 +83,7 @@ if (picking.isActive < 0.5) {
   float behind = vHead - geometry.uv.x;
   float glow = behind >= 0.0 && behind <= pulse.pulseLength ? pow(1.0 - behind / pulse.pulseLength, 2.0) : 0.0;
   color.rgb = mix(color.rgb, pulse.pulseColor, glow * 0.85);
-  float highlighted = picking.isHighlightActive > 0.5 ? picking_vRGBcolor_Avalid.a : 0.0;
-  color.a = max(max(color.a * pulse.baseAlpha, glow * pulse.pulseAlpha), highlighted * pulse.baseAlpha * 2.0);
+  color.a = max(color.a * pulse.baseAlpha, glow * pulse.pulseAlpha);
   if (color.a <= 0.001) discard;
 }
 `,

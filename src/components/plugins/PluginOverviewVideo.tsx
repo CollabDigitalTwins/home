@@ -52,12 +52,12 @@ export default function PluginOverviewVideo({ assetsUrl }: { assetsUrl: string }
         >
           <source src={pluginVideoUrl(assetsUrl, PLUGIN_SYSTEM_VIDEO)} type="video/mp4" />
         </video>
-        <div className="absolute bottom-3 right-3 z-10 flex gap-2">
+        <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-10 flex gap-1.5 sm:gap-2">
           <button
             type="button"
             onClick={togglePlay}
             aria-label={isPlaying ? t('pauseOverview') : t('playOverview')}
-            className="w-10 h-10 rounded-full flex items-center justify-center transition-transform hover:scale-105"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-transform hover:scale-105"
             style={CONTROL_STYLE}
           >
             {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 translate-x-[1px]" />}
@@ -66,7 +66,7 @@ export default function PluginOverviewVideo({ assetsUrl }: { assetsUrl: string }
             type="button"
             onClick={enterFullscreen}
             aria-label={t('fullscreen')}
-            className="w-10 h-10 rounded-full flex items-center justify-center transition-transform hover:scale-105"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-transform hover:scale-105"
             style={CONTROL_STYLE}
           >
             <Maximize2 className="w-4 h-4" />

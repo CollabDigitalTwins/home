@@ -27,28 +27,34 @@ function FooterRow({ label, links }: { label: string; links: FooterLink[] }) {
       <span className="font-mono text-[0.75rem]" style={{ color: 'var(--hp-outline)' }}>
         {label}
       </span>
-      <ul className="flex flex-wrap gap-x-6 gap-y-1.5">
-        {links.map((link) => (
-          <li key={link.label}>
-            {link.external ? (
-              <a
-                href={link.href}
-                target={link.href.startsWith('mailto:') ? undefined : '_blank'}
-                rel="noopener noreferrer"
-                className={LINK_CLASS}
-                onClick={link.onClick}
-              >
-                {link.label}
-              </a>
-            ) : (
-              <Link href={link.href} className={LINK_CLASS}>
-                {link.label}
-              </Link>
-            )}
-          </li>
-        ))}
-      </ul>
+      <FooterLinks links={links} className="flex flex-wrap gap-x-6 gap-y-1.5" />
     </div>
+  )
+}
+
+function FooterLinks({ links, className }: { links: FooterLink[]; className: string }) {
+  return (
+    <ul className={className}>
+      {links.map((link) => (
+        <li key={link.label}>
+          {link.external ? (
+            <a
+              href={link.href}
+              target={link.href.startsWith('mailto:') ? undefined : '_blank'}
+              rel="noopener noreferrer"
+              className={LINK_CLASS}
+              onClick={link.onClick}
+            >
+              {link.label}
+            </a>
+          ) : (
+            <Link href={link.href} className={LINK_CLASS}>
+              {link.label}
+            </Link>
+          )}
+        </li>
+      ))}
+    </ul>
   )
 }
 
@@ -84,11 +90,29 @@ export default function Footer() {
     },
   ]
 
+  const mobileLinks: FooterLink[] = [
+    { label: t('navPlatform'), href: PLATFORM_URL, external: true, onClick: handlePlatformClick },
+    { label: t('documentation'), href: DOCS_URL, external: true },
+    { label: t('navContact'), href: '/contact' },
+    { label: t('privacyPolicy'), href: '/privacypolicy' },
+  ]
+
   return (
     <footer className="relative">
-      <div className="container mx-auto px-6 pt-28 pb-12">
+      <div className="container mx-auto px-6 pt-16 md:pt-28 pb-10 md:pb-12">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row lg:justify-between gap-12">
+          <div className="md:hidden flex flex-col items-center gap-5">
+            <Link href="/" className="inline-flex items-center gap-3 no-underline" aria-label="Collab Digital Twins">
+              <CdtIcon className="w-7 h-7" />
+              <span className="font-display text-lg tracking-wide lowercase" style={{ color: 'var(--hp-on-surface)' }}>
+                <span style={{ color: 'var(--hp-primary-container)' }}>collab</span>
+                digitaltwins
+              </span>
+            </Link>
+            <FooterLinks links={mobileLinks} className="flex flex-wrap justify-center gap-x-5 gap-y-2" />
+          </div>
+
+          <div className="hidden md:flex flex-col lg:flex-row lg:justify-between gap-12">
             <div className="space-y-3 max-w-sm">
               <Link href="/" className="inline-flex items-center gap-3 no-underline" aria-label="Collab Digital Twins">
                 <CdtIcon className="w-8 h-8" />
@@ -115,12 +139,15 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="mt-20 space-y-1.5 text-center">
-            <p className="text-[0.88rem]" style={{ color: 'var(--hp-on-surface-variant)' }}>
+          <div className="mt-8 md:mt-20 space-y-1.5 text-center">
+            <p className="hidden md:block text-[0.88rem]" style={{ color: 'var(--hp-on-surface-variant)' }}>
               {t('governance')}
             </p>
             <p className="text-xs" style={{ color: 'var(--hp-outline)' }}>
-              {t('license')} · {t('stewardship')} · © {new Date().getFullYear()} {t('copyright')}
+              <span className="hidden md:inline">
+                {t('license')} · {t('stewardship')} ·{' '}
+              </span>
+              © {new Date().getFullYear()} {t('copyright')}
             </p>
           </div>
         </div>

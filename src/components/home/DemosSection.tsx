@@ -178,7 +178,7 @@ export default function DemosSection({ assetsUrl }: DemosSectionProps) {
                                         type="button"
                                         onClick={() => goTo(activeIdx - 1)}
                                         aria-label="Previous demo"
-                                        className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                                        className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
                                         style={{
                                             background: 'rgba(0, 0, 0, 0.45)',
                                             backdropFilter: 'blur(8px)',
@@ -192,7 +192,7 @@ export default function DemosSection({ assetsUrl }: DemosSectionProps) {
                                         type="button"
                                         onClick={() => goTo(activeIdx + 1)}
                                         aria-label="Next demo"
-                                        className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                                        className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
                                         style={{
                                             background: 'rgba(0, 0, 0, 0.45)',
                                             backdropFilter: 'blur(8px)',
@@ -203,12 +203,12 @@ export default function DemosSection({ assetsUrl }: DemosSectionProps) {
                                         <ChevronRight className="w-5 h-5" />
                                     </button>
 
-                                    <div className="absolute bottom-3 right-3 z-10 flex gap-2">
+                                    <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-10 flex gap-1.5 sm:gap-2">
                                         <button
                                             type="button"
                                             onClick={togglePlay}
                                             aria-label={isPlaying ? 'Pause demo' : 'Play demo'}
-                                            className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                                            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
                                             style={{
                                                 background: 'rgba(0, 0, 0, 0.45)',
                                                 backdropFilter: 'blur(8px)',
@@ -226,7 +226,7 @@ export default function DemosSection({ assetsUrl }: DemosSectionProps) {
                                             type="button"
                                             onClick={enterFullscreen}
                                             aria-label="Open demo in fullscreen"
-                                            className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                                            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
                                             style={{
                                                 background: 'rgba(0, 0, 0, 0.45)',
                                                 backdropFilter: 'blur(8px)',
@@ -238,7 +238,7 @@ export default function DemosSection({ assetsUrl }: DemosSectionProps) {
                                         </button>
                                     </div>
 
-                                    <div className="absolute bottom-3 left-3 z-10 flex gap-1.5">
+                                    <div className="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 z-10 flex gap-1.5">
                                         {DEMOS.map((d, i) => (
                                             <button
                                                 key={d.key}
@@ -353,7 +353,7 @@ export default function DemosSection({ assetsUrl }: DemosSectionProps) {
 
                         <div
                             ref={trackRef}
-                            className="flex gap-3 sm:gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2 -mx-6 px-6 sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden"
+                            className="hidden sm:flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2 [&::-webkit-scrollbar]:hidden"
                             style={{
                                 scrollbarWidth: 'none',
                                 msOverflowStyle: 'none',
@@ -367,7 +367,7 @@ export default function DemosSection({ assetsUrl }: DemosSectionProps) {
                                         ref={(el) => { thumbRefs.current[i] = el }}
                                         type="button"
                                         onClick={() => goTo(i)}
-                                        className="group relative rounded-lg overflow-hidden aspect-video transition-all flex-shrink-0 snap-start w-[10rem] sm:w-[11rem]"
+                                        className="group relative rounded-lg overflow-hidden aspect-video transition-all flex-shrink-0 snap-start w-[11rem]"
                                         style={{
                                             border: isActive
                                                 ? '2px solid var(--hp-primary-container)'
@@ -399,9 +399,9 @@ export default function DemosSection({ assetsUrl }: DemosSectionProps) {
                                                     : 'linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.7) 100%)',
                                             }}
                                         />
-                                        <div className="absolute inset-0 p-2.5 sm:p-3 flex flex-col justify-end">
+                                        <div className="absolute inset-0 p-3 flex flex-col justify-end">
                                             <span
-                                                className="font-display font-semibold text-left text-white text-[0.75rem] sm:text-[0.8rem] leading-tight"
+                                                className="font-display font-semibold text-left text-white text-[0.8rem] leading-tight"
                                                 style={{ letterSpacing: '-0.01em' }}
                                             >
                                                 {t(`${d.key}.title`)}
