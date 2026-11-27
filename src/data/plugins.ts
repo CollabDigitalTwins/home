@@ -77,7 +77,7 @@ export const PLUGINS: PluginEntry[] = [
       Es: 'Planifica y reserva los espacios de un edificio. Los locales se leen del modelo IFC o se dibujan en el plano, las reservas se comprueban por conflictos y capacidad, y el uso se mide por edificio y en toda la cartera.',
     },
     video: 'cdt-ps-space planning.mp4',
-    thumbnailTime: 69,
+    thumbnailTime: 71,
     category: 'facility-management',
   },
   {
@@ -90,7 +90,7 @@ export const PLUGINS: PluginEntry[] = [
       Es: 'Incendios forestales activos en Canadá, en directo desde el Canadian Interagency Forest Fire Centre (CIFFC): ubicación, superficie y estado de control, con capas de humo, perímetros estimados y el índice meteorológico de incendios.',
     },
     video: 'cdt-ps-willdfires.mp4',
-    thumbnailTime: 5,
+    thumbnailTime: 7,
     category: 'live-data',
     sourcePath: 'live-data/wildfire-monitoring',
   },
