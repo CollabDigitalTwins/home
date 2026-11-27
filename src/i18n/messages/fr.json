@@ -363,7 +363,12 @@
       "pluginDocs": "Documentation",
       "playOverview": "Lire la présentation",
       "pauseOverview": "Mettre en pause",
-      "fullscreen": "Plein écran"
+      "fullscreen": "Plein écran",
+      "viewSource": "Voir le code source de {name}",
+      "pagination": "Pages de la galerie",
+      "previousPage": "Page précédente",
+      "nextPage": "Page suivante",
+      "pageOf": "Page {page} sur {total}"
     },
     "how": {
       "label": "Fonctionnement",

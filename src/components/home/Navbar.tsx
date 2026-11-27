@@ -50,7 +50,7 @@ export default function Navbar({
     href === '/' ? pathname === '/' : pathname.startsWith(href)
 
   return (
-    <motion.nav className="glass-nav fixed top-0 left-0 right-0 z-50">
+    <motion.nav className={`glass-nav fixed top-0 left-0 right-0 z-50 ${mobileMenuOpen ? 'glass-nav--open' : ''}`}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center gap-6">
           <motion.div
