@@ -2,12 +2,13 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, X } from 'lucide-react'
+import { ArrowUpRight, ChevronLeft, ChevronRight, Code, X } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import PluginOverviewVideo from './PluginOverviewVideo'
 import {
   PLUGIN_CATEGORIES,
   PLUGINS_DOCS_URL,
+  pluginSourceUrl,
   pluginVideoUrl,
   sortedPlugins,
   type PluginCategory,
@@ -35,15 +36,44 @@ function useCanHover(): boolean {
   return canHover
 }
 
+const MAX_ROWS = 4
+
+function usePageSize(): number {
+  const [columns, setColumns] = useState(3)
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 992px)')
+    const read = () => setColumns(mq.matches ? 4 : 3)
+    read()
+    mq.addEventListener('change', read)
+    return () => mq.removeEventListener('change', read)
+  }, [])
+  return columns * MAX_ROWS
+}
+
 export default function PluginGallery({ assetsUrl, expandedSlug, onExpand }: PluginGalleryProps) {
   const t = useTranslations('PluginsPage')
   const locale = useLocale() as Language
   const [filter, setFilter] = useState<CategoryFilter>('all')
+  const [page, setPage] = useState(0)
   const canHover = useCanHover()
+  const pageSize = usePageSize()
 
   const plugins = useMemo(() => sortedPlugins(locale), [locale])
   const usedCategories = PLUGIN_CATEGORIES.filter((c) => plugins.some((p) => p.category === c))
-  const isVisible = (p: PluginEntry) => filter === 'all' || p.category === filter || p.slug === expandedSlug
+  const visible = plugins.filter((p) => filter === 'all' || p.category === filter || p.slug === expandedSlug)
+  const pageCount = Math.max(1, Math.ceil(visible.length / pageSize))
+  const currentPage = Math.min(page, pageCount - 1)
+  const pagePlugins = visible.slice(currentPage * pageSize, (currentPage + 1) * pageSize)
+  const expandedIndex = visible.findIndex((p) => p.slug === expandedSlug)
+
+  useEffect(() => {
+    if (expandedIndex >= 0) setPage(Math.floor(expandedIndex / pageSize))
+  }, [expandedIndex, pageSize])
+
+  const selectFilter = (next: CategoryFilter) => {
+    setFilter(next)
+    setPage(0)
+  }
 
   useEffect(() => {
     if (!expandedSlug) return
@@ -75,11 +105,11 @@ export default function PluginGallery({ assetsUrl, expandedSlug, onExpand }: Plu
                 className="flex gap-2 overflow-x-auto max-w-full pb-1 [&::-webkit-scrollbar]:hidden"
                 style={{ scrollbarWidth: 'none' }}
               >
-                <FilterChip active={filter === 'all'} onClick={() => setFilter('all')}>
+                <FilterChip active={filter === 'all'} onClick={() => selectFilter('all')}>
                   {t('gallery.filterAll')}
                 </FilterChip>
                 {usedCategories.map((category) => (
-                  <FilterChip key={category} active={filter === category} onClick={() => setFilter(category)}>
+                  <FilterChip key={category} active={filter === category} onClick={() => selectFilter(category)}>
                     {t(`categories.${category}.name`)}
                   </FilterChip>
                 ))}
@@ -87,25 +117,83 @@ export default function PluginGallery({ assetsUrl, expandedSlug, onExpand }: Plu
             </div>
 
             <div
-              className="grid grid-cols-3 gap-2 sm:gap-4 sm:[grid-template-columns:repeat(auto-fill,minmax(15rem,1fr))]"
+              className="grid grid-cols-3 lg:grid-cols-4 gap-4"
               style={{ gridAutoFlow: 'dense' }}
             >
-              {plugins.map((plugin) => (
+              {pagePlugins.map((plugin) => (
                 <PluginTile
-                  key={plugin.slug}
+                  key={`${plugin.slug}-${plugins.indexOf(plugin)}`}
                   plugin={plugin}
                   assetsUrl={assetsUrl}
-                  hidden={!isVisible(plugin)}
                   expanded={plugin.slug === expandedSlug}
                   canHover={canHover}
                   onToggle={() => onExpand(plugin.slug === expandedSlug ? null : plugin.slug)}
                 />
               ))}
             </div>
+
+            {pageCount > 1 && <Pager page={currentPage} pageCount={pageCount} onChange={setPage} />}
           </div>
         </div>
       </div>
     </section>
+  )
+}
+
+function Pager({ page, pageCount, onChange }: { page: number; pageCount: number; onChange: (page: number) => void }) {
+  const t = useTranslations('PluginsPage')
+  return (
+    <nav aria-label={t('gallery.pagination')} className="flex items-center justify-center gap-4 pt-2">
+      <PagerArrow label={t('gallery.previousPage')} hidden={page === 0} onClick={() => onChange(page - 1)}>
+        <ChevronLeft className="w-5 h-5" />
+      </PagerArrow>
+      <span
+        aria-live="polite"
+        aria-label={t('gallery.pageOf', { page: page + 1, total: pageCount })}
+        className="min-w-[3.5rem] text-center font-mono text-sm font-semibold tabular-nums"
+        style={{ color: 'var(--hp-on-surface-variant)' }}
+      >
+        {page + 1}/{pageCount}
+      </span>
+      <PagerArrow label={t('gallery.nextPage')} hidden={page === pageCount - 1} onClick={() => onChange(page + 1)}>
+        <ChevronRight className="w-5 h-5" />
+      </PagerArrow>
+    </nav>
+  )
+}
+
+function PagerArrow({ label, hidden, onClick, children }: { label: string; hidden: boolean; onClick: () => void; children: React.ReactNode }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={label}
+      disabled={hidden}
+      className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${hidden ? 'invisible' : ''}`}
+      style={{
+        color: 'var(--hp-on-surface)',
+        border: '1px solid var(--hp-outline-variant, rgba(74, 61, 92, 0.18))',
+        background: 'var(--hp-mid, transparent)',
+      }}
+    >
+      {children}
+    </button>
+  )
+}
+
+function SourceLink({ sourcePath, label }: { sourcePath: string; label: string }) {
+  return (
+    <a
+      href={pluginSourceUrl(sourcePath)}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      title={label}
+      className="absolute bottom-1.5 right-1.5 sm:bottom-2 sm:right-2 z-10 w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-white transition-transform hover:scale-110"
+      style={{ background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(6px)' }}
+    >
+      <Code className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+    </a>
   )
 }
 
@@ -130,13 +218,12 @@ function FilterChip({ active, onClick, children }: { active: boolean; onClick: (
 interface PluginTileProps {
   plugin: PluginEntry
   assetsUrl: string
-  hidden: boolean
   expanded: boolean
   canHover: boolean
   onToggle: () => void
 }
 
-function PluginTile({ plugin, assetsUrl, hidden, expanded, canHover, onToggle }: PluginTileProps) {
+function PluginTile({ plugin, assetsUrl, expanded, canHover, onToggle }: PluginTileProps) {
   const t = useTranslations('PluginsPage')
   const locale = useLocale() as Language
   const tileRef = useRef<HTMLElement>(null)
@@ -178,7 +265,6 @@ function PluginTile({ plugin, assetsUrl, hidden, expanded, canHover, onToggle }:
     <motion.article
       ref={tileRef}
       id={plugin.slug}
-      hidden={hidden}
       layout
       transition={{ duration: 0.35, ease: [0.2, 0.8, 0.2, 1] }}
       className="scroll-mt-28"
@@ -186,7 +272,7 @@ function PluginTile({ plugin, assetsUrl, hidden, expanded, canHover, onToggle }:
     >
       <div className={expanded ? 'tonal-card overflow-hidden' : ''}>
         <div
-          className={`group relative w-full aspect-video overflow-hidden bg-black ${expanded ? 'rounded-t-xl' : 'rounded-lg sm:rounded-2xl'}`}
+          className={`group relative w-full overflow-hidden bg-black ${expanded ? 'aspect-video rounded-t-xl' : 'aspect-square sm:aspect-video rounded-[22%] sm:rounded-2xl'}`}
           onMouseEnter={startPreview}
           onMouseLeave={stopPreview}
         >
@@ -213,7 +299,7 @@ function PluginTile({ plugin, assetsUrl, hidden, expanded, canHover, onToggle }:
                 onBlur={stopPreview}
                 aria-expanded={false}
                 aria-label={t('gallery.open', { name })}
-                className="absolute inset-0 w-full h-full text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 rounded-lg sm:rounded-2xl"
+                className="absolute inset-0 w-full h-full text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 rounded-[22%] sm:rounded-2xl"
               >
                 <div
                   className="hidden sm:block absolute inset-0 transition-opacity duration-300"
@@ -232,12 +318,15 @@ function PluginTile({ plugin, assetsUrl, hidden, expanded, canHover, onToggle }:
                   </span>
                 </span>
                 <span
-                  className="absolute top-1 left-1 sm:top-2 sm:left-2 max-w-[calc(100%-0.5rem)] truncate rounded-full px-1.5 sm:px-2.5 py-0.5 text-[0.6rem] sm:text-[0.72rem] font-semibold text-white"
+                  className="absolute top-1.5 left-1.5 sm:top-2 sm:left-2 max-w-[calc(100%-0.75rem)] truncate rounded-full px-1.5 sm:px-2.5 py-0.5 text-[0.6rem] sm:text-[0.72rem] font-semibold text-white"
                   style={{ background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(6px)' }}
                 >
                   {plugin.shortName[locale]}
                 </span>
               </button>
+            )}
+            {!expanded && plugin.sourcePath && (
+              <SourceLink sourcePath={plugin.sourcePath} label={t('gallery.viewSource', { name })} />
             )}
           {expanded && (
             <button
@@ -284,6 +373,18 @@ function PluginTile({ plugin, assetsUrl, hidden, expanded, canHover, onToggle }:
               {t('gallery.pluginDocs')}
               <ArrowUpRight className="w-4 h-4" />
             </a>
+            {plugin.sourcePath && (
+              <a
+                href={pluginSourceUrl(plugin.sourcePath)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-5 inline-flex items-center gap-1 text-sm font-semibold underline underline-offset-2 transition-opacity hover:opacity-80"
+                style={{ color: 'var(--hp-primary-container)' }}
+              >
+                <Code className="w-4 h-4" />
+                {t('gallery.viewSource', { name })}
+              </a>
+            )}
           </motion.div>
         )}
       </div>

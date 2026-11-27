@@ -363,7 +363,12 @@
       "pluginDocs": "Documentación",
       "playOverview": "Reproducir presentación",
       "pauseOverview": "Pausar presentación",
-      "fullscreen": "Pantalla completa"
+      "fullscreen": "Pantalla completa",
+      "viewSource": "Ver el código fuente de {name}",
+      "pagination": "Páginas de la galería",
+      "previousPage": "Página anterior",
+      "nextPage": "Página siguiente",
+      "pageOf": "Página {page} de {total}"
     },
     "how": {
       "label": "Cómo funciona",

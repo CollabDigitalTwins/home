@@ -363,7 +363,12 @@
       "pluginDocs": "Plugin docs",
       "playOverview": "Play overview",
       "pauseOverview": "Pause overview",
-      "fullscreen": "Open in fullscreen"
+      "fullscreen": "Open in fullscreen",
+      "viewSource": "View {name} source code",
+      "pagination": "Gallery pages",
+      "previousPage": "Previous page",
+      "nextPage": "Next page",
+      "pageOf": "Page {page} of {total}"
     },
     "how": {
       "label": "How it works",

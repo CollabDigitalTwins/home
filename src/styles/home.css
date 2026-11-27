@@ -94,6 +94,27 @@ html:has(.hp) {
   background: var(--hp-surface);
 }
 
+@media (max-width: 767px) {
+  .glass-nav:not(.glass-nav--open) {
+    background: none;
+  }
+
+  .glass-nav:not(.glass-nav--open)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--hp-surface);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 35%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 35%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .glass-nav:not(.glass-nav--open)::after {
+    display: none;
+  }
+}
+
 .glass-nav::after {
   content: '';
   position: absolute;

@@ -17,6 +17,8 @@ export interface PluginEntry {
   /** Second of the video used as the gallery thumbnail. */
   thumbnailTime: number
   category: PluginCategory
+  /** Folder under `plugins/` in the public plugins repo, when the source is published there. */
+  sourcePath?: string
 }
 
 export const PLUGINS_DOCS_URL = 'https://docs.collabdt.org/docs/plugins/overview'
@@ -36,7 +38,7 @@ export const PLUGINS: PluginEntry[] = [
       Es: 'Todos los permisos de construcción de la Ciudad de Ottawa desde julio de 2011 en el mapa: un total por distrito a escala general, cada permiso como un punto desde el zoom 13, con filtros, tablas y una ventana que indica el origen de cada registro.',
     },
     video: 'cdt-ps-building-permits.mp4',
-    thumbnailTime: 2,
+    thumbnailTime: 12,
     category: 'planning',
   },
   {
@@ -49,7 +51,7 @@ export const PLUGINS: PluginEntry[] = [
       Es: 'Aeronaves en vuelo en todo el mundo, en directo desde OpenSky Network. Filtre por país y altitud, siga la trayectoria de un vuelo, y muestre los aeropuertos por tamaño o busque uno por su código.',
     },
     video: 'cdt-ps-airplanes.mp4',
-    thumbnailTime: 2,
+    thumbnailTime: 11,
     category: 'live-data',
   },
   {
@@ -62,7 +64,7 @@ export const PLUGINS: PluginEntry[] = [
       Es: 'Rutas, paradas, autobuses y O-Train de OC Transpo en Ottawa, en directo desde el flujo GTFS Realtime.',
     },
     video: 'cdt-ps-oc-transpo.mp4',
-    thumbnailTime: 2,
+    thumbnailTime: 9,
     category: 'live-data',
   },
   {
@@ -75,7 +77,7 @@ export const PLUGINS: PluginEntry[] = [
       Es: 'Planifica y reserva los espacios de un edificio. Los locales se leen del modelo IFC o se dibujan en el plano, las reservas se comprueban por conflictos y capacidad, y el uso se mide por edificio y en toda la cartera.',
     },
     video: 'cdt-ps-space planning.mp4',
-    thumbnailTime: 2,
+    thumbnailTime: 69,
     category: 'facility-management',
   },
   {
@@ -88,8 +90,9 @@ export const PLUGINS: PluginEntry[] = [
       Es: 'Incendios forestales activos en Canadá, en directo desde el Canadian Interagency Forest Fire Centre (CIFFC): ubicación, superficie y estado de control, con capas de humo, perímetros estimados y el índice meteorológico de incendios.',
     },
     video: 'cdt-ps-willdfires.mp4',
-    thumbnailTime: 2,
+    thumbnailTime: 5,
     category: 'live-data',
+    sourcePath: 'live-data/wildfire-monitoring',
   },
   {
     slug: 'flooding',
@@ -101,7 +104,7 @@ export const PLUGINS: PluginEntry[] = [
       Es: 'Niveles de agua costeros sobre el gemelo digital: relieve por dron, edificios y mareógrafo en directo bajo una línea de agua que se puede subir, bajar y animar, para planificar ante inundaciones y la subida del nivel del mar.',
     },
     video: 'cdt-ps-flooding.mp4',
-    thumbnailTime: 2,
+    thumbnailTime: 60,
     category: 'planning',
   },
   {
@@ -114,7 +117,7 @@ export const PLUGINS: PluginEntry[] = [
       Es: 'Una red eléctrica estimada para un barrio, trazada a partir de OpenStreetMap. Corte una línea o un transformador y vea qué edificios se quedan sin electricidad. El trazado es una estimación, no el registro de la distribuidora.',
     },
     video: 'cdt-ps-electric grid.mp4',
-    thumbnailTime: 2,
+    thumbnailTime: 7,
     category: 'planning',
   },
   {
@@ -127,7 +130,7 @@ export const PLUGINS: PluginEntry[] = [
       Es: 'Simulación en tiempo real de escenarios de emergencia. Modela un incidente en desarrollo con humo arrastrado por el viento, tráfico en movimiento, zonas de evacuación y contexto 3D de edificios en el mapa.',
     },
     video: 'cdt-ps-tabletop.mp4',
-    thumbnailTime: 2,
+    thumbnailTime: 66,
     category: 'planning',
   },
 ]
@@ -138,6 +141,9 @@ export const sortedPlugins = (locale: Language): PluginEntry[] =>
   [...PLUGINS].sort(
     (a, b) => categoryOrder(a) - categoryOrder(b) || a.name[locale].localeCompare(b.name[locale], locale.toLowerCase()),
   )
+
+export const pluginSourceUrl = (sourcePath: string): string =>
+  `${COMMUNITY_PLUGINS_URL}/tree/main/plugins/${sourcePath}/`
 
 export const pluginVideoUrl = (assetsUrl: string, file: string): string =>
   `${assetsUrl}/cdt-homepage/plugins/${encodeURIComponent(file)}`
