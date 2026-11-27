@@ -1,12 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import { Github } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/Button'
 import AnimatedBackground from '@/components/ui/AnimatedBackground'
+import GlobePoster from '@/components/ui/GlobePoster'
 import TrustedBy from './TrustedBy'
 import { usePlatformLink } from '@/hooks/usePlatformLink'
 
@@ -15,6 +16,9 @@ const Globe = dynamic(() => import('@/components/ui/Globe'), { ssr: false })
 const GH_URL = 'https://github.com/CollabDigitalTwins/core'
 const MAP_STYLE =
   'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+// Fills the column, grows up to 40px past a 1400px viewport, and never exceeds 85vh.
+const DESKTOP_GLOBE_SIZE = 'min(100% + clamp(0px, (100vw - 1400px) * 0.12, 40px), 85vh)'
+const MOBILE_GLOBE_SIZE = '100dvh'
 
 interface HeroSectionProps {
   assetsUrl: string
@@ -50,6 +54,10 @@ export default function HeroSection({ assetsUrl }: HeroSectionProps) {
     }
   }, [])
 
+  const [globeReady, setGlobeReady] = useState(false)
+  const handleGlobeReady = useCallback(() => setGlobeReady(true), [])
+  useEffect(() => setGlobeReady(false), [isMobile])
+
   return (
     <section
       id="hero"
@@ -75,8 +83,14 @@ export default function HeroSection({ assetsUrl }: HeroSectionProps) {
           >
             {/* Nudge the sphere down so its top clears the fixed header with a
                 small gap instead of sitting behind it. */}
-            <div className="absolute inset-0 translate-y-12">
-              <Globe mapStyleUrl={MAP_STYLE} interactive={false} sizeToHeight={1} />
+            <div className="absolute inset-0 translate-y-12 opacity-75">
+              <GlobePoster size={MOBILE_GLOBE_SIZE} visible={!globeReady} />
+              <Globe
+                mapStyleUrl={MAP_STYLE}
+                interactive={false}
+                size={MOBILE_GLOBE_SIZE}
+                onReady={handleGlobeReady}
+              />
             </div>
           </motion.div>
           {/* Scrim: keeps the headline (top) and buttons (bottom) legible while
@@ -192,8 +206,13 @@ export default function HeroSection({ assetsUrl }: HeroSectionProps) {
               id="demo"
               className="relative w-full hidden md:block"
             >
-              <div className="w-full relative aspect-square">
-                <Globe mapStyleUrl={MAP_STYLE} />
+              <div className="w-full relative aspect-square opacity-75">
+                <GlobePoster size={DESKTOP_GLOBE_SIZE} visible={!globeReady} />
+                <Globe
+                  mapStyleUrl={MAP_STYLE}
+                  size={DESKTOP_GLOBE_SIZE}
+                  onReady={handleGlobeReady}
+                />
               </div>
             </motion.div>
           )}
