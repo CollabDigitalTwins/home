@@ -234,14 +234,17 @@ function PluginTile({ plugin, assetsUrl, expanded, canHover, onToggle }: PluginT
 
   useEffect(() => {
     const v = videoRef.current
+    if (!v) return
     if (!expanded) {
-      v?.pause()
+      v.pause()
+      v.currentTime = plugin.thumbnailTime
       setHovering(false)
       return
     }
-    v?.play().catch(() => undefined)
+    v.currentTime = 0
+    v.play().catch(() => undefined)
     tileRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }, [expanded])
+  }, [expanded, plugin.thumbnailTime])
 
   const startPreview = () => {
     if (!canHover || expanded) return
